@@ -1,6 +1,8 @@
 # Todo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
+Run `git clone <url> <folder name>` and cd into the folder.
+
+Run  `npm install` to install the necessary dependencies. 
 
 ## Development server
 
