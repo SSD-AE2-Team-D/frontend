@@ -1,6 +1,6 @@
 # Todo
 
-Run `git clone <url> <folder name>` and cd into the folder.
+Run `git clone <url>` and cd into the folder.
 
 Run  `npm install` to install the necessary dependencies. 
 
