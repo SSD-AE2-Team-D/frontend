@@ -30,6 +30,17 @@
             </a>
             </dd>
           </div>
+
+          <div class="container">
+            <button (click)="getWelcomeMessage()" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700">
+              Click here to get a custom message
+            </button>
+          </div>
+
+          <div class="container" *ngIf="welcomeMessageFromService">
+            <h1>Custom Message from Springboot</h1>
+            {{welcomeMessageFromService}}
+          </div>
         </dl>
       </div>
     </div>

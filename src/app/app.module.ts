@@ -1,22 +1,20 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { ClickOutsideModule } from 'ng-click-outside';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ClickOutsideModule } from "ng-click-outside";
 
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { LoginComponent } from './login/login.component';
-import { ErrorComponent } from './error/error.component';
-import { ListTodosComponent } from './list-todos/list-todos.component';
-import { MenuComponent } from './menu/menu.component';
-import { FooterComponent } from './footer/footer.component';
-import { LogoutComponent } from './logout/logout.component';
-import { TeamComponent } from './team/team.component';
-
-
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { WelcomeComponent } from "./welcome/welcome.component";
+import { LoginComponent } from "./login/login.component";
+import { ErrorComponent } from "./error/error.component";
+import { ListTodosComponent } from "./list-todos/list-todos.component";
+import { MenuComponent } from "./menu/menu.component";
+import { FooterComponent } from "./footer/footer.component";
+import { LogoutComponent } from "./logout/logout.component";
+import { TeamComponent } from "./team/team.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -28,7 +26,7 @@ import { TeamComponent } from './team/team.component';
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    TeamComponent
+    TeamComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +34,9 @@ import { TeamComponent } from './team/team.component';
     FormsModule,
     BrowserAnimationsModule,
     ClickOutsideModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
