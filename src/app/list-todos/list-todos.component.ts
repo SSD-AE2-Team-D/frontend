@@ -4,6 +4,7 @@ import { HotelDataService } from "../service/data/hotel-data.service";
 export class Hotels {
   constructor(
     public id: number,
+    public name: string,
     public description: string,
     public done: boolean,
     public targetDate: Date
