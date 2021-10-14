@@ -1,6 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -25,7 +24,7 @@ export class MenuComponent implements OnInit {
   showDiv2:boolean=false
   //isUserLoggedIn:boolean=false
 
-  constructor(public hardcodedAuthenticationService: HardcodedAuthenticationService) { }
+  constructor() { }
 
   ngOnInit(): void {
     //this.isUserLoggedIn = this.hardcodedAuthenticationService.isUserLoggedIn()

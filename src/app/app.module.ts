@@ -15,6 +15,12 @@ import { FooterComponent } from "./footer/footer.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { TeamComponent } from "./team/team.component";
 import { HttpClientModule } from "@angular/common/http";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {JwtClientService} from "./service/data/jwt-client.service";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -35,8 +41,13 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     ClickOutsideModule,
     HttpClientModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
   ],
-  providers: [],
+  providers: [JwtClientService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
