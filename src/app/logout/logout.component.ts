@@ -1,19 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+    selector: 'app-logout',
+    templateUrl: './logout.component.html',
+    styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private router: Router) { }
+    constructor(private router: Router) {
+    }
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.router.navigate(['login']);
-  }, 3000);
-  }
+    ngOnInit(): void {
+       this.logout();
+    }
+
+    logout() {
+        localStorage.clear();
+        localStorage.removeItem('username');
+        localStorage.removeItem('access_token');
+        this.router.navigate(['login'])
+    }
 
 }
