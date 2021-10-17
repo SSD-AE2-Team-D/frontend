@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+    selector: 'app-logout',
+    templateUrl: './logout.component.html',
+    styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private router: Router,private hardcodedAuthenticationService:HardcodedAuthenticationService) { }
+    constructor(private router: Router) {
+    }
 
-  ngOnInit(): void {
-    this.hardcodedAuthenticationService.logout()
-    setTimeout(() => {
-      this.router.navigate(['login']);
-  }, 3000);
-  }
+    ngOnInit(): void {
+       this.logout();
+    }
+
+    logout() {
+        localStorage.clear();
+        localStorage.removeItem('username');
+        localStorage.removeItem('access_token');
+        this.router.navigate(['login'])
+    }
 
 }
