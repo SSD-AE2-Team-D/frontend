@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { HotelDataService } from "../service/data/hotel-data.service";
 
 export class Hotels {
   constructor(
@@ -19,12 +18,9 @@ export class Hotels {
 export class ListTodosComponent implements OnInit {
   hotels!: Hotels[];
 
-  constructor(private hotelService: HotelDataService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.hotelService.retrieveAllHotels("abdul").subscribe((response) => {
-      console.log(response);
-      this.hotels = response;
-    });
+
   }
 }

@@ -5,6 +5,7 @@ import {LoginData} from "../../login/login-data";
 import {HttpPath} from "../../core/utill/http-path";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import * as moment from 'moment';
 
 let HTTPOptions: Object = {
     headers: new HttpHeaders({
@@ -15,6 +16,7 @@ let HTTPOptions: Object = {
 
 @Injectable({providedIn: 'root'})
 export class JwtClientService {
+
     constructor(private router: Router,
                 private http: HttpClient) {
     }
@@ -24,11 +26,20 @@ export class JwtClientService {
             .pipe(map(response => <any>response));
     }
 
-    public checkValidToken(token: any) {
-        let tokenStr = 'Bearer ' + token;
-        const headers = new HttpHeaders().set("Authorization", tokenStr);
-        return this.http.get(HttpPath.SERVICE_PATH + 'logins/checkValidToken', {headers, responseType: 'text' as 'json'})
-            .pipe(map(response => <any>response));
+    public getToken() {
+        return localStorage.getItem('access_token');
+    }
+
+    get isLoggedIn(): boolean {
+        let authToken = localStorage.getItem('access_token');
+        return (authToken !== null);
+    }
+
+    public doLogout() {
+        let removeToken = localStorage.removeItem('access_token');
+        if (removeToken == null) {
+            this.router.navigate(['logout']);
+        }
     }
 
 }
