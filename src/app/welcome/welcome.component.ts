@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -7,12 +7,22 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./welcome.component.css"],
 })
 export class WelcomeComponent implements OnInit {
+  @ViewChild('sidenav') sidenav: any;
+  isShowing: boolean;
 
   constructor(
     private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+  }
+
+  toggleSidenav() {
+    this.isShowing = !this.isShowing;
+  }
+
+  callMethods() {
+    this.toggleSidenav();
   }
 
  }

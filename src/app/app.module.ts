@@ -15,18 +15,19 @@ import {FooterComponent} from "./footer/footer.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {TeamComponent} from "./team/team.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {MatCardModule} from "@angular/material/card";
-import {MatButtonModule} from "@angular/material/button";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
 import {JwtClientService} from "./service/data/jwt-client.service";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {UserService} from "./service/data/user.service";
 import {AuthorityService} from "./service/data/authority.service";
 import {AuthGuard} from "./login/auth-guard";
 import {AuthInterceptor} from "./util/auth.interceptor";
+import {MatSliderModule} from "@angular/material/slider";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
     declarations: [
@@ -47,15 +48,14 @@ import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
         BrowserAnimationsModule,
         ClickOutsideModule,
         HttpClientModule,
-        MatCardModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSnackBarModule,
-        MatIconModule,
         MatToolbarModule,
-        MatFormFieldModule,
-    ],
+        MatSidenavModule,
+        MatListModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSliderModule,
+        MatSnackBarModule,
+        MatCardModule],
     providers: [AuthGuard,
         JwtClientService,
         {
@@ -65,9 +65,7 @@ import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
         },
         UserService,
         AuthorityService],
-    exports: [MatIconModule,
-        MatToolbarModule,
-        MatFormFieldModule],
+    exports: [],
     bootstrap: [AppComponent],
 })
 export class AppModule {
