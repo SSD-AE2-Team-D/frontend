@@ -8,6 +8,7 @@ export class Page extends SharedModel {
     description: string;
     moduleId: number;
     urlPattern: string;
+    icon: string;
 
     module: Module;
 

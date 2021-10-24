@@ -6,4 +6,5 @@ export class Module extends SharedModel{
     description: string;
     moduleCode: string;
     urlPattern: string;
+    icon: string;
 }

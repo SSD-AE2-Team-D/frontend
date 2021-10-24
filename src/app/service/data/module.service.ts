@@ -1,10 +1,9 @@
-import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {HttpPath} from "../../core/utill/http-path";
+import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
+import {HttpPath} from "../../core/utill/http-path";
 import {map} from "rxjs/operators";
-import {User} from "../../config/user/user";
-import {Authority} from "../../config/authority/authority";
+import {Module} from "../../config/module/module";
 
 let HTTPOptions: Object = {
     headers: new HttpHeaders({
@@ -16,17 +15,16 @@ let HTTPOptions: Object = {
 @Injectable({
     providedIn: 'root'
 })
-export class UserService {
-
+export class ModuleService{
     constructor(private http: HttpClient) {
     }
 
-    getUserData(userName: string): Observable<User> {
+    getUserModules(userName: string, organizationId: number): Observable<Module[]> {
         let params = new HttpParams();
         params = params.set('userName', userName);
-        return this.http.get(HttpPath.SERVICE_PATH + 'users/getUserData', {
+        params = params.set('organizationId', organizationId.toString());
+        return this.http.get(HttpPath.SERVICE_PATH + 'modules/getUserModules', {
             params: params
-        }).pipe(map(response => <User>response));
+        }).pipe(map(response => <Module[]>response));
     }
-
 }

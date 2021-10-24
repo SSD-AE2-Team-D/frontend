@@ -28,6 +28,11 @@ import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
+import {ModuleService} from "./service/data/module.service";
+import {PageService} from "./service/data/page.service";
+import {PageTitleService} from "./core/page-title/page-title.service";
+import {PageComponent} from "./config/page/page.component";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
     declarations: [
@@ -40,6 +45,7 @@ import {MatCardModule} from "@angular/material/card";
         FooterComponent,
         LogoutComponent,
         TeamComponent,
+        PageComponent
     ],
     imports: [
         BrowserModule,
@@ -55,7 +61,8 @@ import {MatCardModule} from "@angular/material/card";
         MatIconModule,
         MatSliderModule,
         MatSnackBarModule,
-        MatCardModule],
+        MatCardModule,
+        MatTabsModule],
     providers: [AuthGuard,
         JwtClientService,
         {
@@ -64,7 +71,10 @@ import {MatCardModule} from "@angular/material/card";
             multi: true
         },
         UserService,
-        AuthorityService],
+        AuthorityService,
+        ModuleService,
+        PageService,
+        PageTitleService],
     exports: [],
     bootstrap: [AppComponent],
 })
