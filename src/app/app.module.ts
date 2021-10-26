@@ -29,6 +29,9 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatMenuModule} from "@angular/material/menu";
 import {MainComponent} from './main/main.component';
+import {ModuleComponent} from "./config/module/module.component";
+import {ModuleCreationComponent} from "./config/module/module-creation.component";
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
     declarations: [
@@ -36,7 +39,9 @@ import {MainComponent} from './main/main.component';
         LoginComponent,
         LogoutComponent,
         PageComponent,
-        MainComponent
+        MainComponent,
+        ModuleComponent,
+        ModuleCreationComponent
     ],
     imports: [
         BrowserModule,
@@ -55,7 +60,8 @@ import {MainComponent} from './main/main.component';
         MatCardModule,
         MatTabsModule,
         MatDividerModule,
-        MatMenuModule],
+        MatMenuModule,
+        MatDialogModule],
     providers: [AuthGuard,
         JwtClientService,
         {

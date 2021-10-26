@@ -8,17 +8,18 @@
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" [opened]="isShowing" class="mat-elevation-z8">
-        <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+
         <mat-divider></mat-divider>
         <mat-nav-list>
             <mat-list-item *ngFor="let page of pageList">
-                <a mat-list-item [routerLink]="[page.urlPattern ]" routerLinkActive="active-link"
+                <a mat-list-item [routerLink]="[page.urlPattern]" routerLinkActive="active-link"
                    (click)="onToggleClose()">
                     <mat-icon>{{ page.icon }}</mat-icon>
                     {{ page.pageName }}
                 </a>
             </mat-list-item>
         </mat-nav-list>
+        <mat-divider></mat-divider>
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="content mat-elevation-z8">
