@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {mergeMap, take} from "rxjs/operators";
-import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
+import {take} from "rxjs/operators";
+import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from '@angular/router';
 import {LoginData} from "./login-data";
 import {JwtClientService} from "../service/data/jwt-client.service";
@@ -15,7 +15,7 @@ import {AuthorityService} from "../service/data/authority.service";
 export class LoginComponent implements OnInit {
 
     loginData: LoginData;
-    errorMsg = 'Invalid Credentials'
+    errorMsg = ''
     invalidLogin = false
 
     constructor(private snackBar: MatSnackBar,
@@ -27,12 +27,17 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.logout();
     }
 
     public checkLogin(): void {
         this.jwtClientService.generateToken(this.loginData).pipe(take(1))
             .subscribe(data => {
                 this.saveDataLocalStorage(data, this.loginData);
+            }, error => {
+                this.invalidLogin = true;
+                this.errorMsg = 'Token expired !!!';
+                return;
             });
     }
 
@@ -47,13 +52,22 @@ export class LoginComponent implements OnInit {
                                 localStorage.setItem('access_token', token);
                                 localStorage.setItem('organizationId', JSON.stringify(user.organizationId));
                                 localStorage.setItem('userAuthorityList', JSON.stringify(authorities));
-                                this.router.navigate(['welcome', this.loginData.userName]);
+                                localStorage.setItem('isRefreshingToken', 'false');
+                                this.router.navigate(['main']);
                             }
                         })
                 } else {
                     this.invalidLogin = true;
+                    this.errorMsg = 'Invalid Credentials';
                     return;
                 }
             })
+    }
+
+    logout() {
+        localStorage.clear();
+        localStorage.removeItem('username');
+        localStorage.removeItem('access_token');
+        this.router.navigate(['login'])
     }
 }

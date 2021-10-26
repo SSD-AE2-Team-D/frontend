@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <span>GuideLK</span>
+    <div class="spacer"></div>
+    <span *ngFor="let module of moduleList">
+               <a mat-button (click)="getPages(module.moduleId)">{{module.moduleName}}</a>
+             </span>
+    <a mat-button (click)="logOut()">Logout</a>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" [opened]="isShowing" class="mat-elevation-z8">
+        <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+            <mat-list-item *ngFor="let page of pageList">
+                <a mat-list-item [routerLink]="[page.urlPattern ]" routerLinkActive="active-link"
+                   (click)="onToggleClose()">
+                    <mat-icon>{{ page.icon }}</mat-icon>
+                    {{ page.pageName }}
+                </a>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

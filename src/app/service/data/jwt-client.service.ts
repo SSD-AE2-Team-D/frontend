@@ -5,7 +5,6 @@ import {LoginData} from "../../login/login-data";
 import {HttpPath} from "../../core/utill/http-path";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import * as moment from 'moment';
 
 let HTTPOptions: Object = {
     headers: new HttpHeaders({

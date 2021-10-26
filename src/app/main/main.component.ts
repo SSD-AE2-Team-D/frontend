@@ -1,26 +1,30 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
-import {ModuleService} from "../service/data/module.service";
-import {take} from "rxjs/operators";
+import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Module} from "../config/module/module";
-import {PageService} from "../service/data/page.service";
 import {Page} from "../config/page/page";
+import {ModuleService} from "../service/data/module.service";
+import {PageService} from "../service/data/page.service";
+import {take} from "rxjs/operators";
+import {JwtClientService} from "../service/data/jwt-client.service";
+import {Router} from "@angular/router";
+import {MatSidenav} from "@angular/material/sidenav";
 
 @Component({
-    selector: "app-welcome",
-    templateUrl: "./welcome.component.html",
-    styleUrls: ["./welcome.component.css"],
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.css']
 })
-export class WelcomeComponent implements OnInit {
-    @ViewChild('sidenav') sidenav: any;
+export class MainComponent implements OnInit {
+    @ViewChild('sidenav') sidenav: MatSidenav;
     isShowing: boolean;
     moduleList: Module[] = [];
     pageList: Page[] = [];
+    @Output() closeSideNav = new EventEmitter();
 
-    constructor(
-        private route: ActivatedRoute,
-        private moduleService: ModuleService,
-        private pageService: PageService) {
+
+    constructor(private router: Router,
+                private jwtClientService: JwtClientService,
+                private moduleService: ModuleService,
+                private pageService: PageService) {
     }
 
     ngOnInit(): void {
@@ -35,6 +39,10 @@ export class WelcomeComponent implements OnInit {
         this.toggleSidenav();
     }
 
+    onToggleClose() {
+        this.closeSideNav.emit();
+    }
+
     public userModules() {
         const username = localStorage.getItem('username');
         if (username) {
@@ -42,7 +50,6 @@ export class WelcomeComponent implements OnInit {
                 .pipe((take(1))).subscribe(modules => {
                 if (modules && modules.length > 0) {
                     modules.forEach(mod => {
-                        console.log(mod);
                         this.moduleList.push(mod);
                     })
                 }
@@ -62,8 +69,13 @@ export class WelcomeComponent implements OnInit {
                     this.toggleSidenav();
                 }
             })
-
-
     }
+
+    public logOut() {
+        this.moduleList = [];
+        this.pageList = [];
+        this.jwtClientService.doLogout();
+    }
+
 
 }

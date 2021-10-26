@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'GuideLK';
-}
+  userAlive:boolean = true;
+
+  public getUser(){
+    if(localStorage.getItem('username')){
+      this.userAlive = true;
+    }
+  }
+
+ }
