@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LoginData} from "../../login/login-data";
-import {HttpPath} from "../../core/utill/http-path";
+import {HttpService} from "../../core/utill/http.service";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
@@ -21,7 +21,7 @@ export class JwtClientService {
     }
 
     public generateToken(loginData: LoginData): Observable<any> {
-        return this.http.post<any>(HttpPath.SERVICE_PATH + 'logins/authenticate', loginData, HTTPOptions)
+        return this.http.post<any>(HttpService.SERVICE_PATH + 'logins/authenticate', loginData, HTTPOptions)
             .pipe(map(response => <any>response));
     }
 

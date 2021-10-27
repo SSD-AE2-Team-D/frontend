@@ -1,37 +1,64 @@
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
+import {AppRoutingModule} from "./app-routing.module";
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ClickOutsideModule} from "ng-click-outside";
-import {AppRoutingModule} from "./app-routing.module";
-import {AppComponent} from "./app.component";
-import {LoginComponent} from "./login/login.component";
-import {LogoutComponent} from "./logout/logout.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {AuthGuard} from "./login/auth-guard";
 import {JwtClientService} from "./service/data/jwt-client.service";
+import {AuthInterceptor} from "./util/auth.interceptor";
+import {ErrorInterceptor} from "./util/error.interceptor";
 import {UserService} from "./service/data/user.service";
 import {AuthorityService} from "./service/data/authority.service";
-import {AuthGuard} from "./login/auth-guard";
-import {AuthInterceptor} from "./util/auth.interceptor";
-import {MatSliderModule} from "@angular/material/slider";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatListModule} from "@angular/material/list";
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
-import {MatCardModule} from "@angular/material/card";
 import {ModuleService} from "./service/data/module.service";
 import {PageService} from "./service/data/page.service";
 import {PageTitleService} from "./core/page-title/page-title.service";
+import {RolePermission} from "./shared/rolePermission/rolePermission";
+import {AppComponent} from "./app.component";
+import {LoginComponent} from "./login/login.component";
+import {LogoutComponent} from "./logout/logout.component";
 import {PageComponent} from "./config/page/page.component";
-import {MatTabsModule} from "@angular/material/tabs";
-import {MatDividerModule} from "@angular/material/divider";
-import {MatMenuModule} from "@angular/material/menu";
-import {MainComponent} from './main/main.component';
+import {MainComponent} from "./main/main.component";
 import {ModuleComponent} from "./config/module/module.component";
-import {ModuleCreationComponent} from "./config/module/module-creation.component";
-import { MatDialogModule } from "@angular/material/dialog";
+import {ModuleCreationComponent} from "./config/module/creation/module-creation.component";
+import {ModuleDialogComponent, ModuleSearchComponent} from "./config/module/search/module-search.component";
+import {AuditComponent} from "./shared/audit/audit.component";
+import {ConfirmDialogComponent} from "./shared/confirm-dialog/confirm-dialog.component";
+import {MatButtonModule} from "@angular/material/button";
+import {MatCardModule} from "@angular/material/card";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSelectModule} from "@angular/material/select";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatSliderModule} from "@angular/material/slider";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSortModule} from "@angular/material/sort";
+import {MatTableModule} from "@angular/material/table";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from "ng-pick-datetime-ex";
+import {CommonModule} from "@angular/common";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatListModule} from "@angular/material/list";
+import {AgGridModule} from "ag-grid-angular";
 
 @NgModule({
     declarations: [
@@ -41,27 +68,61 @@ import { MatDialogModule } from "@angular/material/dialog";
         PageComponent,
         MainComponent,
         ModuleComponent,
-        ModuleCreationComponent
+        ModuleCreationComponent,
+        ModuleSearchComponent,
+        AuditComponent,
+        ConfirmDialogComponent,
+        ModuleDialogComponent,
     ],
+    entryComponents: [ConfirmDialogComponent,
+        ModuleDialogComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
+        CommonModule,
         BrowserAnimationsModule,
         ClickOutsideModule,
         HttpClientModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatListModule,
+        FlexLayoutModule,
+        MatAutocompleteModule,
         MatButtonModule,
-        MatIconModule,
-        MatSliderModule,
-        MatSnackBarModule,
+        MatButtonToggleModule,
         MatCardModule,
-        MatTabsModule,
-        MatDividerModule,
+        MatCheckboxModule,
+        MatChipsModule,
+        MatStepperModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatExpansionModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
         MatMenuModule,
-        MatDialogModule],
+        MatNativeDateModule,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatRadioModule,
+        MatRippleModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatSliderModule,
+        MatSlideToggleModule,
+        MatSnackBarModule,
+        MatSortModule,
+        MatTableModule,
+        MatTabsModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        MatDatepickerModule,
+        MatSortModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
+        AgGridModule,
+        AgGridModule.withComponents([]),
+    ],
     providers: [AuthGuard,
         JwtClientService,
         {
@@ -69,12 +130,18 @@ import { MatDialogModule } from "@angular/material/dialog";
             useClass: AuthInterceptor,
             multi: true
         },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptor,
+            multi: true
+        },
         UserService,
         AuthorityService,
         ModuleService,
         PageService,
-        PageTitleService],
-    exports: [],
+        PageTitleService,
+        RolePermission],
+    exports: [FlexLayoutModule,],
     bootstrap: [AppComponent],
 })
 export class AppModule {

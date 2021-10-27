@@ -1,0 +1,34 @@
+div.mat-form-field-flex {
+    width: 800px;
+    height: 60px;
+}
+
+.pad-wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+}
+
+.status-approved {
+    background-color: #2eb82e;
+    color: #ffffff;
+}
+
+.status-deleted {
+    background-color: darkgray;
+    color: #ffffff;
+}
+
+.status-open {
+    background-color: #ec1313;
+    color: #ffffff;
+}
+
+.status-closed {
+    background-color: #009999;
+    color: #ffffff;
+}

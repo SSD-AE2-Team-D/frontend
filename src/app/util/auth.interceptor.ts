@@ -12,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let authToken = this.authService.getToken();
         if(!authToken){
-            authToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWNoaWdlZXRoIiwiZXhwIjoxNjM1MzA2NzY4LCJpYXQiOjE2MzUyNzA3Njh9.suXPj4Y_bnZYN27GLH7Im5f-81UUlB6zTByulw8bU_4';
+            authToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWNoaWdlZXRoIiwiZXhwIjoxNjM1MzkwNDI1LCJpYXQiOjE2MzUzNTQ0MjV9.6TzdBLlJjmgOVOwfpkQp02Flh0CiaUGhFPO4RuVUPPw';
         }
         req = req.clone({
             setHeaders: {
