@@ -7,6 +7,9 @@ import {take} from "rxjs/operators";
 import {JwtClientService} from "../service/data/jwt-client.service";
 import {Router} from "@angular/router";
 import {MatSidenav} from "@angular/material/sidenav";
+import {UserService} from "../service/data/user.service";
+import {AuthorityService} from "../service/data/authority.service";
+import {LoginData} from "../login/login-data";
 
 @Component({
     selector: 'app-main',
@@ -23,6 +26,8 @@ export class MainComponent implements OnInit {
 
     constructor(private router: Router,
                 private jwtClientService: JwtClientService,
+                private userService: UserService,
+                private authorityService: AuthorityService,
                 private moduleService: ModuleService,
                 private pageService: PageService) {
     }

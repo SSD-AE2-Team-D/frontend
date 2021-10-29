@@ -13,11 +13,15 @@ export class UserService {
     constructor(private http: HttpClient) {
     }
 
-    getUserData(userName: string): Observable<User> {
+    getUserData(userName: string, token: any): Observable<User> {
         let params = new HttpParams();
         params = params.set('userName', userName);
+        const headers = new HttpHeaders({
+            'Content-type': 'application/json',
+            'Authorization': "Bearer " + token
+        });
         return this.http.get(HttpService.SERVICE_PATH + 'users/getUserData', {
-            params: params
+            params: params, headers
         }).pipe(map(response => <User>response));
     }
 

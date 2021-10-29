@@ -23,11 +23,10 @@ export class ModuleSearchComponent implements OnInit {
     dialogRef: MatDialogRef<ModuleDialogComponent>;
     moduleInfoTable: Module[] = [];
     moduleInfoTableDataSource = new MatTableDataSource(this.moduleInfoTable);
-    public displayedColumns = ['ModuleName', 'ModuleCode', 'CreatedBy', 'CreatedDate', 'LastModifiedBy', 'LastModifiedDate', 'Status'];
+    public displayedColumns = ['ModuleName', 'ModuleCode', 'CreatedBy', 'CreatedDate', 'LastModifiedBy', 'LastModifiedDate', 'Status', 'Action'];
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     statusList: MasterStatus[];
-    globalFilter = '';
 
     constructor(private dialog: MatDialog,
                 private moduleService: ModuleService,) {
@@ -57,8 +56,23 @@ export class ModuleSearchComponent implements OnInit {
 
     }
 
-        public searchModule(): void {
+
+    openDialog(module: any) {
+        this.dialogRef = this.dialog.open(ModuleDialogComponent, {
+            disableClose: false,
+            width: 'inherit',
+            data: {module: module},
+            height: '80%'
+        });
+        this.dialogRef.afterClosed().pipe(take(1))
+            .subscribe((module: Module[]) => {
+                this.searchModule();
+            });
+    }
+
+    public searchModule(): void {
         this.moduleVo.organizationId = Number(localStorage.getItem('organizationId'));
+        console.log(this.moduleVo);
         this.moduleService.moduleSearch(this.moduleVo).pipe(take(1))
             .subscribe((module) => {
                 this.moduleInfoTable = module;
@@ -71,7 +85,7 @@ export class ModuleSearchComponent implements OnInit {
 
 @Component({
     selector: 'app-module-search-modal',
-    template: '<app-module-creation [module]="data.moduleId" [isUpdate]="true" [isNew]="false" (onDelete)="closeModal($event)" (onCancel)="closeModal($event)"></app-module-creation>'
+    template: '<app-module-creation [module]="data.module" [isUpdate]="true" [isNew]="false" (onDelete)="closeModal($event)" (onCancel)="closeModal($event)"></app-module-creation>'
 })
 export class ModuleDialogComponent {
     constructor(public dialogRef: MatDialogRef<ModuleDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {

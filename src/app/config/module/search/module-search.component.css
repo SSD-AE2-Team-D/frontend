@@ -1,6 +1,7 @@
 div.mat-form-field-flex {
-    width: 800px;
+    width: 680px;
     height: 60px;
+    margin-right: 20px;
 }
 
 .pad-wrap {
@@ -11,6 +12,10 @@ div.mat-form-field-flex {
 .example-header {
     min-height: 64px;
     padding: 8px 24px 0;
+}
+
+.custom-class .mat-icon {
+    vertical-align: middle;
 }
 
 .status-approved {

@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.logout();
     }
 
     public checkLogin(): void {
@@ -42,17 +41,16 @@ export class LoginComponent implements OnInit {
     }
 
     public saveDataLocalStorage(token: any, userData: LoginData) {
-        this.userService.getUserData(userData.userName).pipe(take(1))
+        this.userService.getUserData(userData.userName, token).pipe(take(1))
             .subscribe(user => {
                 if (user) {
-                    this.authorityService.getUserAuthorities(userData.userName, user.organizationId).pipe(take(1))
+                    this.authorityService.getUserAuthorities(userData.userName, user.organizationId, token).pipe(take(1))
                         .subscribe(authorities => {
                             if (authorities) {
                                 localStorage.setItem('username', userData.userName);
                                 localStorage.setItem('access_token', token);
                                 localStorage.setItem('organizationId', JSON.stringify(user.organizationId));
                                 localStorage.setItem('userAuthorityList', JSON.stringify(authorities));
-                                localStorage.setItem('isRefreshingToken', 'false');
                                 this.router.navigate(['main']);
                             }
                         })
@@ -61,13 +59,11 @@ export class LoginComponent implements OnInit {
                     this.errorMsg = 'Invalid Credentials';
                     return;
                 }
+            }, error => {
+                this.invalidLogin = true;
+                this.errorMsg = 'Invalid Credentials';
+                return;
             })
     }
 
-    logout() {
-        localStorage.clear();
-        localStorage.removeItem('username');
-        localStorage.removeItem('access_token');
-        this.router.navigate(['login'])
-    }
 }

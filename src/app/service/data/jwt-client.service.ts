@@ -29,6 +29,10 @@ export class JwtClientService {
         return localStorage.getItem('access_token');
     }
 
+    public getRefreshToken() {
+        return window.sessionStorage.getItem('refresh_token');
+    }
+
     get isLoggedIn(): boolean {
         let authToken = localStorage.getItem('access_token');
         return (authToken !== null);

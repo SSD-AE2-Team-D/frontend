@@ -4,6 +4,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "paths": { "@angular/*": ["./node_modules/@angular/*"] },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": false,
@@ -21,12 +22,12 @@
       "es2018",
       "dom"
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true,
+    "strictTemplates": true
   }
 }
