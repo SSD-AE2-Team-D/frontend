@@ -53,6 +53,7 @@ export class MainComponent implements OnInit {
         if (username) {
             this.moduleService.getUserModules(username, Number(localStorage.getItem('organizationId')))
                 .pipe((take(1))).subscribe(modules => {
+                    console.log(modules);
                 if (modules && modules.length > 0) {
                     modules.forEach(mod => {
                         this.moduleList.push(mod);

@@ -10,7 +10,7 @@ let HTTPOptions: Object = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json'
     }),
-    responseType: 'text'
+    responseType: 'text as json'
 }
 
 @Injectable({providedIn: 'root'})
