@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private authService: JwtClientService) {
     }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<Object>> {
         let authReq = req;
         const token = this.authService.getToken();
         if (token != null) {
@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }
 
         return next.handle(authReq).pipe(catchError(error => {
-            if (error instanceof HttpErrorResponse && !authReq.url.includes('logins/authenticate') && error.status === 401) {
+            if (error instanceof HttpErrorResponse && !authReq.url.includes('auth/authenticate') && error.status === 401) {
                 return this.handle401Error(authReq, next);
             }
 
@@ -31,6 +31,30 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+        if (!this.isRefreshing) {
+            this.isRefreshing = true;
+            this.refreshTokenSubject.next(null);
+
+            const token = this.authService.getRefreshToken();
+            if (token)
+                return this.authService.refreshToken(token).pipe(
+                    switchMap((token: any) => {
+                        this.isRefreshing = false;
+
+                        window.sessionStorage.removeItem("access_token");
+                        window.sessionStorage.setItem("access_token", token);
+                        this.refreshTokenSubject.next(token.accessToken);
+
+                        return next.handle(this.addTokenHeader(request, token.accessToken));
+                    }),
+                    catchError((err: any) => {
+                        this.isRefreshing = false;
+                        window.sessionStorage.clear();
+                        return throwError(err);
+                    })
+                );
+        }
+
         return this.refreshTokenSubject.pipe(
             filter(token => token !== null),
             take(1),
@@ -38,10 +62,8 @@ export class AuthInterceptor implements HttpInterceptor {
         );
     }
 
-
     private addTokenHeader(request: HttpRequest<any>, token: string) {
         return request.clone({headers: request.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token)});
-
     }
 
 }

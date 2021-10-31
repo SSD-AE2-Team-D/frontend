@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {take} from "rxjs/operators";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from '@angular/router';
-import {LoginData} from "./login-data";
+import {AuthRequest} from "./auth-request";
 import {JwtClientService} from "../service/data/jwt-client.service";
 import {UserService} from "../service/data/user.service";
 import {AuthorityService} from "../service/data/authority.service";
@@ -14,7 +14,7 @@ import {AuthorityService} from "../service/data/authority.service";
 })
 export class LoginComponent implements OnInit {
 
-    loginData: LoginData;
+    authRequest: AuthRequest;
     errorMsg = ''
     invalidLogin = false
 
@@ -23,16 +23,18 @@ export class LoginComponent implements OnInit {
                 private jwtClientService: JwtClientService,
                 private userService: UserService,
                 private authorityService: AuthorityService) {
-        this.loginData = new LoginData();
+        this.authRequest = new AuthRequest();
     }
 
     ngOnInit(): void {
     }
 
     public checkLogin(): void {
-        this.jwtClientService.generateToken(this.loginData).pipe(take(1))
-            .subscribe(data => {
-                this.saveDataLocalStorage(data, this.loginData);
+        this.jwtClientService.authenticate(this.authRequest).pipe(take(1))
+            .subscribe((data: any) => {
+                window.sessionStorage.setItem('access_token', data.token);
+                window.sessionStorage.setItem('refresh_token', data.refreshToken);
+                this.saveDataLocalStorage(data, this.authRequest);
             }, error => {
                 this.invalidLogin = true;
                 this.errorMsg = 'Token expired !!!';
@@ -40,17 +42,17 @@ export class LoginComponent implements OnInit {
             });
     }
 
-    public saveDataLocalStorage(token: any, userData: LoginData) {
-        this.userService.getUserData(userData.userName, token).pipe(take(1))
+    public saveDataLocalStorage(data: any, userData: AuthRequest) {
+        this.userService.getUserData(userData.userName).pipe(take(1))
             .subscribe(user => {
                 if (user) {
-                    this.authorityService.getUserAuthorities(userData.userName, user.organizationId, token).pipe(take(1))
+                    this.authorityService.getUserAuthorities(userData.userName, user.organizationId).pipe(take(1))
                         .subscribe(authorities => {
                             if (authorities) {
-                                localStorage.setItem('username', userData.userName);
-                                localStorage.setItem('access_token', token);
-                                localStorage.setItem('organizationId', JSON.stringify(user.organizationId));
-                                localStorage.setItem('userAuthorityList', JSON.stringify(authorities));
+                                window.sessionStorage.setItem('username', userData.userName);
+                                window.sessionStorage.setItem('userId', JSON.stringify(user.userId));
+                                window.sessionStorage.setItem('organizationId', JSON.stringify(user.organizationId));
+                                window.sessionStorage.setItem('userAuthorityList', JSON.stringify(authorities));
                                 this.router.navigate(['main']);
                             }
                         })

@@ -12,16 +12,12 @@ export class AuthorityService {
     constructor(private http: HttpClient) {
     }
 
-    getUserAuthorities(userName: string, organizationId: number, token: any): Observable<Authority[]> {
+    getUserAuthorities(userName: string, organizationId: number): Observable<Authority[]> {
         let params = new HttpParams();
         params = params.set('userName', userName);
         params = params.set('organizationId', organizationId);
-        const headers = new HttpHeaders({
-            'Content-type': 'application/json',
-            'Authorization': "Bearer " + token
-        });
         return this.http.get(HttpService.SERVICE_PATH + 'authorities/getUserAuthorities', {
-            params: params, headers
+            params: params
         }).pipe(map(response => <Authority[]>response));
     }
 }

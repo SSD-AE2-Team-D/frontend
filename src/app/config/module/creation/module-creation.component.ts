@@ -55,7 +55,7 @@ export class ModuleCreationComponent implements OnInit {
     }
 
     createModule() {
-        this.module.organizationId = Number(localStorage.getItem('organizationId'));
+        this.module.organizationId = Number(window.sessionStorage.getItem('organizationId'));
         this.moduleService.postModule(this.module).pipe(take(1)).subscribe((module) => {
             this.module = module;
             console.log(module);

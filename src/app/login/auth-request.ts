@@ -1,4 +1,4 @@
-export class LoginData{
+export class AuthRequest{
     userName: string;
     password: string;
 }

@@ -71,7 +71,7 @@ export class ModuleSearchComponent implements OnInit {
     }
 
     public searchModule(): void {
-        this.moduleVo.organizationId = Number(localStorage.getItem('organizationId'));
+        this.moduleVo.organizationId = Number(window.sessionStorage.getItem('organizationId'));
         console.log(this.moduleVo);
         this.moduleService.moduleSearch(this.moduleVo).pipe(take(1))
             .subscribe((module) => {

@@ -10,7 +10,7 @@ export class AppComponent {
   userAlive:boolean = true;
 
   public getUser(){
-    if(localStorage.getItem('username')){
+    if(window.sessionStorage.getItem('username')){
       this.userAlive = true;
     }
   }
