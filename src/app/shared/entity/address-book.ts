@@ -4,7 +4,7 @@ export class AddressBook extends SharedModel{
     addressBookId: number;
     addressOne: string;
     addressTwo: string;
-    zip: string;
+    postalCode: string;
     fax: string;
     email: string;
     telephone: string;

@@ -8,7 +8,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AuthGuard} from "./login/auth-guard";
 import {JwtClientService} from "./service/data/jwt-client.service";
-import {AuthInterceptor} from "./util/auth.interceptor";
+import {AuthInterceptor, authInterceptorProviders} from "./util/auth.interceptor";
 import {ErrorInterceptor} from "./util/error.interceptor";
 import {UserService} from "./service/data/user.service";
 import {AuthorityService} from "./service/data/authority.service";
@@ -40,7 +40,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
-import {DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule, MatRippleModule} from "@angular/material/core";
+import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatPaginatorModule} from "@angular/material/paginator";
@@ -54,13 +54,17 @@ import {MatTableModule} from "@angular/material/table";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import {DateTimeAdapter, OWL_DATE_TIME_LOCALE, OwlDateTimeModule, OwlNativeDateTimeModule} from "ng-pick-datetime-ex";
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from "ng-pick-datetime-ex";
 import {CommonModule} from "@angular/common";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatListModule} from "@angular/material/list";
 import {AgGridModule} from "ag-grid-angular";
-import {MOMENT_DATE_FORMATS, MomentDateAdapter} from "./shared/date/moment-date-adapter";
-import {MomentDateTimeAdapter} from "ng-pick-datetime-moment";
+import {AddressBookComponent} from "./config/common/addressBook/address-book.component";
+import {OrganizationComponent} from "./config/organization/organization.component";
+import {OrganizationCreationComponent} from "./config/organization/creation/organization-creation.component";
+import {OrganizationService} from "./service/data/organization.service";
+import {SelectCheckAllComponent} from "./shared/select-check-all/select-check-all.component";
+import {OrganizationDialogComponent, OrganizationSearchComponent} from "./config/organization/search/organization-search.component";
 
 @NgModule({
     declarations: [
@@ -70,14 +74,21 @@ import {MomentDateTimeAdapter} from "ng-pick-datetime-moment";
         PageComponent,
         MainComponent,
         ModuleComponent,
+        OrganizationComponent,
         ModuleCreationComponent,
         ModuleSearchComponent,
+        OrganizationCreationComponent,
+        OrganizationSearchComponent,
         AuditComponent,
+        AddressBookComponent,
         ConfirmDialogComponent,
         ModuleDialogComponent,
+        OrganizationDialogComponent,
+        SelectCheckAllComponent,
     ],
     entryComponents: [ConfirmDialogComponent,
-        ModuleDialogComponent],
+        ModuleDialogComponent,
+        OrganizationDialogComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -127,11 +138,7 @@ import {MomentDateTimeAdapter} from "ng-pick-datetime-moment";
     ],
     providers: [AuthGuard,
         JwtClientService,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true
-        },
+        authInterceptorProviders,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ErrorInterceptor,
@@ -141,6 +148,7 @@ import {MomentDateTimeAdapter} from "ng-pick-datetime-moment";
         AuthorityService,
         ModuleService,
         PageService,
+        OrganizationService,
         PageTitleService,
         RolePermission],
     exports: [FlexLayoutModule,],

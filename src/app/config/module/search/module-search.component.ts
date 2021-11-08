@@ -46,7 +46,6 @@ export class ModuleSearchComponent implements OnInit {
     }
 
     applyFilter(val: any) {
-        console.log(val)
         if (val) {
             this.moduleInfoTableDataSource.filter = val.trim().toLowerCase();
             if (this.moduleInfoTableDataSource.paginator) {
@@ -62,7 +61,7 @@ export class ModuleSearchComponent implements OnInit {
             disableClose: false,
             width: 'inherit',
             data: {module: module},
-            height: '80%'
+            height: '70%'
         });
         this.dialogRef.afterClosed().pipe(take(1))
             .subscribe((module: Module[]) => {
@@ -72,12 +71,10 @@ export class ModuleSearchComponent implements OnInit {
 
     public searchModule(): void {
         this.moduleVo.organizationId = Number(window.sessionStorage.getItem('organizationId'));
-        console.log(this.moduleVo);
         this.moduleService.moduleSearch(this.moduleVo).pipe(take(1))
             .subscribe((module) => {
                 this.moduleInfoTable = module;
                 this.moduleInfoTableDataSource.data = this.moduleInfoTable;
-                console.log(this.moduleInfoTableDataSource.data)
             })
     }
 

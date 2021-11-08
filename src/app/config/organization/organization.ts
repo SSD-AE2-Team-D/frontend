@@ -3,7 +3,7 @@ import {AddressBook} from "../../shared/entity/address-book";
 import {Module} from "../module/module";
 
 export class Organization extends SharedModel {
-    organizationId: number;
+    organizationId: any;
     organizationName: string;
     shortCode: string;
     description: string;
@@ -14,4 +14,5 @@ export class Organization extends SharedModel {
     addressBook: AddressBook;
 
     modules: Module[];
+
 }

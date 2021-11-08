@@ -1,5 +1,12 @@
 import {Injectable} from "@angular/core";
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {
+    HTTP_INTERCEPTORS,
+    HttpErrorResponse,
+    HttpEvent,
+    HttpHandler,
+    HttpInterceptor,
+    HttpRequest
+} from "@angular/common/http";
 import {JwtClientService} from "../service/data/jwt-client.service";
 import {BehaviorSubject, Observable, throwError} from "rxjs";
 import {catchError, filter, switchMap, take} from "rxjs/operators";
@@ -22,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }
 
         return next.handle(authReq).pipe(catchError(error => {
-            if (error instanceof HttpErrorResponse && !authReq.url.includes('auth/authenticate') && error.status === 401) {
+            if (error instanceof HttpErrorResponse && !authReq.url.includes('/api/auth/authenticate') && error.status === 401) {
                 return this.handle401Error(authReq, next);
             }
 
@@ -40,16 +47,15 @@ export class AuthInterceptor implements HttpInterceptor {
                 return this.authService.refreshToken(token).pipe(
                     switchMap((token: any) => {
                         this.isRefreshing = false;
-
                         window.sessionStorage.removeItem("access_token");
-                        window.sessionStorage.setItem("access_token", token);
+                        window.sessionStorage.setItem("access_token", token.accessToken);
                         this.refreshTokenSubject.next(token.accessToken);
-
                         return next.handle(this.addTokenHeader(request, token.accessToken));
                     }),
                     catchError((err: any) => {
                         this.isRefreshing = false;
                         window.sessionStorage.clear();
+
                         return throwError(err);
                     })
                 );
@@ -67,3 +73,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
 }
+
+export const authInterceptorProviders = [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+];

@@ -5,7 +5,6 @@ import {AuthRequest} from "../../login/auth-request";
 import {HttpService} from "../../core/utill/http.service";
 import {Observable, throwError} from "rxjs";
 import {catchError, map, retry} from "rxjs/operators";
-import {Module} from "../../config/module/module";
 
 let HTTPOptions: Object = {
     headers: new HttpHeaders({

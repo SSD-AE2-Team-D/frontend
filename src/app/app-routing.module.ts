@@ -6,6 +6,7 @@ import {LogoutComponent} from "./logout/logout.component";
 import {PageComponent} from "./config/page/page.component";
 import {MainComponent} from "./main/main.component";
 import {ModuleComponent} from "./config/module/module.component";
+import {OrganizationComponent} from "./config/organization/organization.component";
 
 const routes: Routes = [
     {path: '', component: LoginComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
         path: 'main', component: MainComponent, canActivate: [AuthGuard],
         children: [{path: 'page', component: PageComponent, canActivate: [AuthGuard]},
             {path: 'module', component: ModuleComponent, canActivate: [AuthGuard]},
+            {path: 'organization', component: OrganizationComponent, canActivate: [AuthGuard]},
         ]
     },
 ];

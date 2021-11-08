@@ -58,7 +58,6 @@ export class ModuleCreationComponent implements OnInit {
         this.module.organizationId = Number(window.sessionStorage.getItem('organizationId'));
         this.moduleService.postModule(this.module).pipe(take(1)).subscribe((module) => {
             this.module = module;
-            console.log(module);
             this.snackBar.open('Module Saved', 'success', <MatSnackBarConfig>{
                 duration: 3000
             });

@@ -45,7 +45,6 @@ export class ModuleService {
             )
     }
 
-
     getUserModules(userName: string, organizationId: number): Observable<Module[]> {
         let params = new HttpParams();
         params = params.set('userName', userName);
@@ -53,6 +52,11 @@ export class ModuleService {
         return this.http.get(HttpService.SERVICE_PATH + 'modules/getUserModules', {
             params: params
         }).pipe(map(response => <Module[]>response));
+    }
+
+    getUserModuleList(): Observable<Module[]> {
+        return this.http.get(HttpService.SERVICE_PATH + 'modules/getUserModuleList', this.httpHeader)
+            .pipe(map(response => <Module[]>response));
     }
 
     getModuleData(moduleId: string): Observable<Module> {
