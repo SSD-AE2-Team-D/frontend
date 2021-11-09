@@ -112,8 +112,7 @@
     </div>
     <mat-card>
         <mat-card-content>
-            <app-address-book #addressBookComponent [addressBook]="organization.addressBook"
-                              [linkType]="'masterProfile'"></app-address-book>
+            <app-address-book #addressBookComponent [addressBook]="organization.addressBook"></app-address-book>
         </mat-card-content>
         <app-audit *ngIf="organization.organizationId" [createdBy]="organization.createdBy"
                    [createdDate]="organization.createdDate"

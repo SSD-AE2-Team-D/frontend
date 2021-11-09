@@ -4,6 +4,12 @@
         <mat-tab-group (selectedTabChange)="onTabChange($event)" >
             <mat-tab label="Creation">
                 <div class="pad-t-mat pad-b-mat">
+                    <app-page-creation></app-page-creation>
+                </div>
+            </mat-tab>
+            <mat-tab label="Search">
+                <div class="pad-t-mat pad-b-mat">
+                    <app-page-search></app-page-search>
                 </div>
             </mat-tab>
         </mat-tab-group>

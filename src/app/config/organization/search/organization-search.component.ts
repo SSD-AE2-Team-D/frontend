@@ -1,7 +1,6 @@
 import {Component, Inject, Input, OnInit, ViewChild, ViewEncapsulation} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {OrganizationService} from "../../../service/data/organization.service";
-import {ModuleVo} from "../../module/module-vo";
 import {NgForm} from "@angular/forms";
 import {Module} from "../../module/module";
 import {MatTableDataSource} from "@angular/material/table";
@@ -28,6 +27,7 @@ export class OrganizationSearchComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     statusList: MasterStatus[];
+
     constructor(private dialog: MatDialog,
                 private organizationService: OrganizationService){
 
@@ -53,9 +53,7 @@ export class OrganizationSearchComponent implements OnInit {
                 this.organizationInfoTableDataSource.paginator.firstPage();
             }
         }
-
     }
-
 
     openDialog(organization: any) {
         this.dialogRef = this.dialog.open(OrganizationDialogComponent, {

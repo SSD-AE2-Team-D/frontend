@@ -54,7 +54,7 @@ export class ModuleCreationComponent implements OnInit {
         this.moduleForm.resetForm();
     }
 
-    createModule() {
+   public createModule(): void {
         this.module.organizationId = Number(window.sessionStorage.getItem('organizationId'));
         this.moduleService.postModule(this.module).pipe(take(1)).subscribe((module) => {
             this.module = module;

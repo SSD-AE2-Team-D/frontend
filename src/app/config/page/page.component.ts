@@ -11,7 +11,6 @@ export class PageComponent implements OnInit{
     constructor(private pageTitleService: PageTitleService) { }
 
     ngOnInit() {
-        this.pageTitleService.setTitle('Page');
     }
     onTabChange(event: MatTabChangeEvent) {
     }

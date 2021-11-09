@@ -3,11 +3,12 @@ import {Module} from "../module/module";
 import {Authority} from "../authority/authority";
 
 export class Page extends SharedModel {
-    pageId: number;
+    pageId: any;
     pageName: string;
     description: string;
     moduleId: number;
     urlPattern: string;
+    orderIndex: number;
     icon: string;
 
     module: Module;

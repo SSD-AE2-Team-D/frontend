@@ -11,7 +11,6 @@ import {NgForm} from "@angular/forms";
 export class AddressBookComponent implements OnInit {
     @Input() addressBook: AddressBook;
     @Input() isUpdate: Boolean;
-    @Input() linkType: string;
     @Output() onDelete: EventEmitter<number> = new EventEmitter<number>();
     @ViewChild('addressBookForm') addressBookForm: NgForm;
 

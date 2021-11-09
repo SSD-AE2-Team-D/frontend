@@ -71,7 +71,7 @@ export class OrganizationCreationComponent implements OnInit {
         this.addressBookComponent.addressBookForm.resetForm();
     }
 
-    createOrganization() {
+   public createOrganization(): void {
         this.organizationService.postOrganization(this.organization).pipe(take(1)).subscribe((organization) => {
             this.organization = organization;
             this.snackBar.open('Organization Saved', 'success', <MatSnackBarConfig>{

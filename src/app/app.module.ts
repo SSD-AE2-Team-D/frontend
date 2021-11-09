@@ -65,6 +65,10 @@ import {OrganizationCreationComponent} from "./config/organization/creation/orga
 import {OrganizationService} from "./service/data/organization.service";
 import {SelectCheckAllComponent} from "./shared/select-check-all/select-check-all.component";
 import {OrganizationDialogComponent, OrganizationSearchComponent} from "./config/organization/search/organization-search.component";
+import {PageCreationComponent} from "./config/page/creation/page-creation.component";
+import {AuthorityDisplayComponent} from "./config/authority/authority-display.component";
+import {AuthorityTruncatePipe} from "./config/authority/authority.pipe";
+import {PageDialogComponent, PageSearchComponent} from "./config/page/search/page-search.component";
 
 @NgModule({
     declarations: [
@@ -79,16 +83,22 @@ import {OrganizationDialogComponent, OrganizationSearchComponent} from "./config
         ModuleSearchComponent,
         OrganizationCreationComponent,
         OrganizationSearchComponent,
+        PageCreationComponent,
+        PageSearchComponent,
         AuditComponent,
         AddressBookComponent,
         ConfirmDialogComponent,
         ModuleDialogComponent,
         OrganizationDialogComponent,
+        PageDialogComponent,
+        AuthorityDisplayComponent,
         SelectCheckAllComponent,
+        AuthorityTruncatePipe
     ],
     entryComponents: [ConfirmDialogComponent,
         ModuleDialogComponent,
-        OrganizationDialogComponent],
+        OrganizationDialogComponent,
+        PageDialogComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
