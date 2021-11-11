@@ -14,4 +14,6 @@ export class Page extends SharedModel {
     module: Module;
 
     authorities: Authority[];
+
+    isAssigned: boolean;
 }

@@ -25,6 +25,7 @@ export class PageCreationComponent implements OnInit {
     @Input() isUpdate: Boolean;
     @Input() isNew: Boolean;
     @Input() actionType: string;
+    @Input() isDisabled: boolean = false;
     @Output() onDelete: EventEmitter<number> = new EventEmitter<number>();
     @Output() onCancel: EventEmitter<void> = new EventEmitter<void>();
     @ViewChild('pageForm') pageForm: NgForm;
@@ -73,6 +74,7 @@ export class PageCreationComponent implements OnInit {
 
     public resetForm() {
         this.pageForm.resetForm();
+        this.authorityDisplayComponent.isUnassigned();
     }
 
     public createPage(): void {
@@ -95,6 +97,7 @@ export class PageCreationComponent implements OnInit {
             });
             this.isUpdate = true;
             this.isNew = true;
+            this.isDisabled = true;
         }, (error) => {
             this.snackBar.open('Page already exist', "error", <MatSnackBarConfig>{
                 panelClass: ['red-snackbar']

@@ -3,11 +3,10 @@ import {PageTitleService} from "../../core/page-title/page-title.service";
 import {MatTabChangeEvent} from "@angular/material/tabs";
 
 @Component({
-    selector: 'app-page',
-    templateUrl: './page.component.html',
+    selector: 'app-role',
+    templateUrl: './role.component.html',
 })
-export class PageComponent implements OnInit{
-
+export class RoleComponent implements OnInit{
     constructor(private pageTitleService: PageTitleService) { }
 
     ngOnInit() {

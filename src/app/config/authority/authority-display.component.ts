@@ -45,4 +45,14 @@ export class AuthorityDisplayComponent implements OnInit {
         }
 
     }
+
+    public isUnassigned(): void {
+        if (this.authorityList.length !== null && this.authorityList.length > 0) {
+            this.authorityList.forEach(auth => {
+                if (auth.isAssigned) {
+                    auth.isAssigned = false;
+                }
+            })
+        }
+    }
 }

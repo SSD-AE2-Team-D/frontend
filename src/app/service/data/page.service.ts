@@ -7,6 +7,7 @@ import {Page} from "../../config/page/page";
 import {PageVo} from "../../config/page/page-vo";
 import {MasterStatus} from "../../util/master-status";
 import {Authority} from "../../config/authority/authority";
+import {Module} from "../../config/module/module";
 
 @Injectable({
     providedIn: 'root'
@@ -66,6 +67,11 @@ export class PageService {
         params = params.set('pageId', pageId.toString());
         return this.http.get(HttpService.SERVICE_PATH + 'pages/', {params: params})
             .pipe(map(response => <Authority[]>response));
+    }
+
+    getPageList(): Observable<Page[]> {
+        return this.http.get(HttpService.SERVICE_PATH + 'pages/getPageList', this.httpHeader)
+            .pipe(map(response => <Page[]>response));
     }
 
     getMasterDataStatus(filter: string): Observable<MasterStatus[]> {

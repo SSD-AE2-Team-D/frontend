@@ -92,7 +92,7 @@ export class PageSearchComponent implements OnInit {
 
 @Component({
     selector: 'app-page-search-modal',
-    template: '<app-page-creation [page]="data.page" [isUpdate]="true" [isNew]="false" [actionType]="data.actionType" (onDelete)="closeModal($event)" (onCancel)="closeModal($event)"></app-page-creation>'
+    template: '<app-page-creation [page]="data.page" [isUpdate]="true" [isNew]="false" [isDisabled]="true" [actionType]="data.actionType" (onDelete)="closeModal($event)" (onCancel)="closeModal($event)"></app-page-creation>'
 })
 export class PageDialogComponent {
     constructor(public dialogRef: MatDialogRef<PageDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {

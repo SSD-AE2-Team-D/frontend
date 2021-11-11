@@ -69,6 +69,10 @@ import {PageCreationComponent} from "./config/page/creation/page-creation.compon
 import {AuthorityDisplayComponent} from "./config/authority/authority-display.component";
 import {AuthorityTruncatePipe} from "./config/authority/authority.pipe";
 import {PageDialogComponent, PageSearchComponent} from "./config/page/search/page-search.component";
+import { RoleComponent } from "./config/role/role.component";
+import { PageDisplayComponent } from "./config/page/display/page-display.component";
+import {RoleCreationComponent} from "./config/role/creation/role-creation.component";
+import {RoleDialogComponent, RoleSearchComponent} from "./config/role/search/role-search.component";
 
 @NgModule({
     declarations: [
@@ -79,26 +83,32 @@ import {PageDialogComponent, PageSearchComponent} from "./config/page/search/pag
         MainComponent,
         ModuleComponent,
         OrganizationComponent,
+        RoleComponent,
         ModuleCreationComponent,
         ModuleSearchComponent,
         OrganizationCreationComponent,
         OrganizationSearchComponent,
         PageCreationComponent,
+        RoleCreationComponent,
         PageSearchComponent,
+        RoleSearchComponent,
         AuditComponent,
         AddressBookComponent,
         ConfirmDialogComponent,
         ModuleDialogComponent,
         OrganizationDialogComponent,
         PageDialogComponent,
+        RoleDialogComponent,
         AuthorityDisplayComponent,
+        PageDisplayComponent,
         SelectCheckAllComponent,
         AuthorityTruncatePipe
     ],
     entryComponents: [ConfirmDialogComponent,
         ModuleDialogComponent,
         OrganizationDialogComponent,
-        PageDialogComponent],
+        PageDialogComponent,
+        RoleDialogComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
