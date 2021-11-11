@@ -40,7 +40,6 @@ export class PageCreationComponent implements OnInit {
                 private moduleService: ModuleService,
                 private authorityService: AuthorityService,
                 public rolePermission: RolePermission) {
-
     }
 
     ngOnInit() {
