@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {Authority} from "../../config/authority/authority";
 import {HttpService} from "../../core/utill/http.service";
 import {map} from "rxjs/operators";
-import {Module} from "../../config/module/module";
 
 @Injectable({
     providedIn: 'root'

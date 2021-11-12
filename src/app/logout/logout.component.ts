@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {JwtClientService} from "../service/data/jwt-client.service";
 
 @Component({
     selector: 'app-logout',

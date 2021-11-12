@@ -8,7 +8,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AuthGuard} from "./login/auth-guard";
 import {JwtClientService} from "./service/data/jwt-client.service";
-import {AuthInterceptor, authInterceptorProviders} from "./util/auth.interceptor";
+import {authInterceptorProviders} from "./util/auth.interceptor";
 import {ErrorInterceptor} from "./util/error.interceptor";
 import {UserService} from "./service/data/user.service";
 import {AuthorityService} from "./service/data/authority.service";

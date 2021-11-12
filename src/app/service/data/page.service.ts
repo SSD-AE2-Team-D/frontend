@@ -7,7 +7,6 @@ import {Page} from "../../config/page/page";
 import {PageVo} from "../../config/page/page-vo";
 import {MasterStatus} from "../../util/master-status";
 import {Authority} from "../../config/authority/authority";
-import {Module} from "../../config/module/module";
 
 @Injectable({
     providedIn: 'root'

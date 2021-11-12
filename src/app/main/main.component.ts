@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Module} from "../config/module/module";
 import {Page} from "../config/page/page";
 import {ModuleService} from "../service/data/module.service";
