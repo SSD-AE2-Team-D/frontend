@@ -3,7 +3,7 @@ import {Organization} from "../organization/organization";
 import {Role} from "../role/role";
 
 export class User extends SharedModel {
-    userId: number;
+    userId: any;
     userName: string;
     password: string;
     email: string;
@@ -14,4 +14,5 @@ export class User extends SharedModel {
     organization: Organization;
 
     roles: Role[];
+    confirmPassword: string;
 }

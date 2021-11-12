@@ -7,4 +7,6 @@ export class Role extends SharedModel {
     roleDescription: string;
 
     pages: Page[];
+
+    isAssigned: boolean;
 }

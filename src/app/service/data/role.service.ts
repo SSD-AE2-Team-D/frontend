@@ -5,8 +5,8 @@ import {HttpService} from "../../core/utill/http.service";
 import {catchError, map, retry} from "rxjs/operators";
 import {Role} from "../../config/role/role";
 import {RoleVo} from "../../config/role/role-vo";
-import {Page} from "../../config/page/page";
 import {MasterStatus} from "../../util/master-status";
+import {Page} from "../../config/page/page";
 
 @Injectable({
     providedIn: 'root'
@@ -58,6 +58,11 @@ export class RoleService {
         params = params.set('roleId', roleId.toString());
         return this.http.get(HttpService.SERVICE_PATH + 'roles/', {params: params})
             .pipe(map(response => <Page[]>response));
+    }
+
+    getRoleList(): Observable<Role[]> {
+        return this.http.get(HttpService.SERVICE_PATH + 'roles/getRoleList', this.httpHeader)
+            .pipe(map(response => <Role[]>response));
     }
 
     getMasterDataStatus(filter: string): Observable<MasterStatus[]> {

@@ -64,15 +64,22 @@ import {OrganizationComponent} from "./config/organization/organization.componen
 import {OrganizationCreationComponent} from "./config/organization/creation/organization-creation.component";
 import {OrganizationService} from "./service/data/organization.service";
 import {SelectCheckAllComponent} from "./shared/select-check-all/select-check-all.component";
-import {OrganizationDialogComponent, OrganizationSearchComponent} from "./config/organization/search/organization-search.component";
+import {
+    OrganizationDialogComponent,
+    OrganizationSearchComponent
+} from "./config/organization/search/organization-search.component";
 import {PageCreationComponent} from "./config/page/creation/page-creation.component";
 import {AuthorityDisplayComponent} from "./config/authority/authority-display.component";
 import {AuthorityTruncatePipe} from "./config/authority/authority.pipe";
 import {PageDialogComponent, PageSearchComponent} from "./config/page/search/page-search.component";
-import { RoleComponent } from "./config/role/role.component";
-import { PageDisplayComponent } from "./config/page/display/page-display.component";
+import {RoleComponent} from "./config/role/role.component";
+import {PageDisplayComponent} from "./config/page/display/page-display.component";
 import {RoleCreationComponent} from "./config/role/creation/role-creation.component";
 import {RoleDialogComponent, RoleSearchComponent} from "./config/role/search/role-search.component";
+import {RoleDisplayComponent} from "./config/role/display/role-display.component";
+import {UserComponent} from "./config/user/user.component";
+import {UserCreationComponent} from "./config/user/creation/user-creation.component";
+import {UserDialogComponent, UserSearchComponent} from "./config/user/search/user-search.component";
 
 @NgModule({
     declarations: [
@@ -84,14 +91,17 @@ import {RoleDialogComponent, RoleSearchComponent} from "./config/role/search/rol
         ModuleComponent,
         OrganizationComponent,
         RoleComponent,
+        UserComponent,
         ModuleCreationComponent,
         ModuleSearchComponent,
         OrganizationCreationComponent,
         OrganizationSearchComponent,
         PageCreationComponent,
         RoleCreationComponent,
+        UserCreationComponent,
         PageSearchComponent,
         RoleSearchComponent,
+        UserSearchComponent,
         AuditComponent,
         AddressBookComponent,
         ConfirmDialogComponent,
@@ -99,8 +109,10 @@ import {RoleDialogComponent, RoleSearchComponent} from "./config/role/search/rol
         OrganizationDialogComponent,
         PageDialogComponent,
         RoleDialogComponent,
+        UserDialogComponent,
         AuthorityDisplayComponent,
         PageDisplayComponent,
+        RoleDisplayComponent,
         SelectCheckAllComponent,
         AuthorityTruncatePipe
     ],
@@ -108,7 +120,9 @@ import {RoleDialogComponent, RoleSearchComponent} from "./config/role/search/rol
         ModuleDialogComponent,
         OrganizationDialogComponent,
         PageDialogComponent,
-        RoleDialogComponent],
+        RoleDialogComponent,
+        UserDialogComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,

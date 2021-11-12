@@ -8,6 +8,7 @@ import {MainComponent} from "./main/main.component";
 import {ModuleComponent} from "./config/module/module.component";
 import {OrganizationComponent} from "./config/organization/organization.component";
 import {RoleComponent} from "./config/role/role.component";
+import {UserComponent} from "./config/user/user.component";
 
 const routes: Routes = [
     {path: '', component: LoginComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
             {path: 'module', component: ModuleComponent, canActivate: [AuthGuard]},
             {path: 'organization', component: OrganizationComponent, canActivate: [AuthGuard]},
             {path: 'role', component: RoleComponent, canActivate: [AuthGuard]},
+            {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
         ]
     },
 ];

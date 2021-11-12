@@ -64,7 +64,7 @@ export class MainComponent implements OnInit {
 
     public getPages(moduleId: number) {
         this.pageList = [];
-        this.pageService.getPagesByModule(moduleId).pipe(take(1))
+        this.pageService.getPagesByModule(moduleId, Number(window.sessionStorage.getItem('userId'))).pipe(take(1))
             .subscribe(pages => {
                 if (pages && pages.length > 0) {
                     pages.forEach(page => {

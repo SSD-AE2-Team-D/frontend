@@ -13,6 +13,7 @@ export class AddressBookComponent implements OnInit {
     @Input() isUpdate: Boolean;
     @Output() onDelete: EventEmitter<number> = new EventEmitter<number>();
     @ViewChild('addressBookForm') addressBookForm: NgForm;
+    emailPattern = '^(([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5}){1,25})*$';
 
     constructor(){}
 

@@ -2,10 +2,10 @@ import {Component, OnInit} from "@angular/core";
 import {MatTabChangeEvent} from "@angular/material/tabs";
 
 @Component({
-    selector: 'app-role',
-    templateUrl: './role.component.html',
+    selector: 'app-user',
+    templateUrl: './user.component.html',
 })
-export class RoleComponent implements OnInit{
+export class UserComponent implements OnInit{
     constructor() { }
 
     ngOnInit() {
