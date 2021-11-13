@@ -88,6 +88,12 @@ import {CountryDialogComponent, CountrySearchComponent} from "./masterInfo/count
 import {LocationComponent} from "./masterInfo/location/location.component";
 import { LocationCreationComponent } from "./masterInfo/location/creation/location-creation.component";
 import {LocationDialogComponent, LocationSearchComponent} from "./masterInfo/location/search/location-search.component";
+import {CustomerComponent} from "./operationalInfo/customer/customer.component";
+import {CustomerCreationComponent} from "./operationalInfo/customer/creation/customer-creation.component";
+import {
+    CustomerDialogComponent,
+    CustomerSearchComponent
+} from "./operationalInfo/customer/search/customer-search.component";
 
 @NgModule({
     declarations: [
@@ -102,6 +108,7 @@ import {LocationDialogComponent, LocationSearchComponent} from "./masterInfo/loc
         UserComponent,
         CountryComponent,
         LocationComponent,
+        CustomerComponent,
         ModuleCreationComponent,
         ModuleSearchComponent,
         OrganizationCreationComponent,
@@ -116,6 +123,8 @@ import {LocationDialogComponent, LocationSearchComponent} from "./masterInfo/loc
         CountrySearchComponent,
         LocationCreationComponent,
         LocationSearchComponent,
+        CustomerCreationComponent,
+        CustomerSearchComponent,
         AuditComponent,
         AddressBookComponent,
         ConfirmDialogComponent,
@@ -126,6 +135,7 @@ import {LocationDialogComponent, LocationSearchComponent} from "./masterInfo/loc
         UserDialogComponent,
         CountryDialogComponent,
         LocationDialogComponent,
+        CustomerDialogComponent,
         AuthorityDisplayComponent,
         PageDisplayComponent,
         RoleDisplayComponent,
@@ -139,7 +149,8 @@ import {LocationDialogComponent, LocationSearchComponent} from "./masterInfo/loc
         RoleDialogComponent,
         UserDialogComponent,
         CountryDialogComponent,
-        LocationDialogComponent
+        LocationDialogComponent,
+        CustomerDialogComponent
     ],
     imports: [
         BrowserModule,
