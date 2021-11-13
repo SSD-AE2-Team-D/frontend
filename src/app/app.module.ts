@@ -80,6 +80,14 @@ import {RoleDisplayComponent} from "./config/role/display/role-display.component
 import {UserComponent} from "./config/user/user.component";
 import {UserCreationComponent} from "./config/user/creation/user-creation.component";
 import {UserDialogComponent, UserSearchComponent} from "./config/user/search/user-search.component";
+import {CountryService} from "./service/data/country.service";
+import {LocationService} from "./service/data/location.service";
+import {CountryComponent} from "./masterInfo/country/country.component";
+import {CountryCreationComponent} from "./masterInfo/country/creation/country-creation.component";
+import {CountryDialogComponent, CountrySearchComponent} from "./masterInfo/country/search/country-search.component";
+import {LocationComponent} from "./masterInfo/location/location.component";
+import { LocationCreationComponent } from "./masterInfo/location/creation/location-creation.component";
+import {LocationDialogComponent, LocationSearchComponent} from "./masterInfo/location/search/location-search.component";
 
 @NgModule({
     declarations: [
@@ -92,16 +100,22 @@ import {UserDialogComponent, UserSearchComponent} from "./config/user/search/use
         OrganizationComponent,
         RoleComponent,
         UserComponent,
+        CountryComponent,
+        LocationComponent,
         ModuleCreationComponent,
         ModuleSearchComponent,
         OrganizationCreationComponent,
         OrganizationSearchComponent,
         PageCreationComponent,
-        RoleCreationComponent,
-        UserCreationComponent,
         PageSearchComponent,
+        RoleCreationComponent,
         RoleSearchComponent,
+        UserCreationComponent,
         UserSearchComponent,
+        CountryCreationComponent,
+        CountrySearchComponent,
+        LocationCreationComponent,
+        LocationSearchComponent,
         AuditComponent,
         AddressBookComponent,
         ConfirmDialogComponent,
@@ -110,6 +124,8 @@ import {UserDialogComponent, UserSearchComponent} from "./config/user/search/use
         PageDialogComponent,
         RoleDialogComponent,
         UserDialogComponent,
+        CountryDialogComponent,
+        LocationDialogComponent,
         AuthorityDisplayComponent,
         PageDisplayComponent,
         RoleDisplayComponent,
@@ -122,6 +138,8 @@ import {UserDialogComponent, UserSearchComponent} from "./config/user/search/use
         PageDialogComponent,
         RoleDialogComponent,
         UserDialogComponent,
+        CountryDialogComponent,
+        LocationDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -183,6 +201,8 @@ import {UserDialogComponent, UserSearchComponent} from "./config/user/search/use
         ModuleService,
         PageService,
         OrganizationService,
+        CountryService,
+        LocationService,
         PageTitleService,
         RolePermission],
     exports: [FlexLayoutModule,],

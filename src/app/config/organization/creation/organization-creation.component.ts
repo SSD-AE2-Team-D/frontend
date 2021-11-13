@@ -20,7 +20,6 @@ import {AddressBook} from "../../../shared/entity/address-book";
     encapsulation: ViewEncapsulation.None
 })
 export class OrganizationCreationComponent implements OnInit {
-
     @Input() organization: Organization;
     @Input() isUpdate: Boolean;
     @Input() isNew: Boolean;

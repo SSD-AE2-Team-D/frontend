@@ -3,6 +3,7 @@ import {RoleService} from "../../../service/data/role.service";
 import {UserService} from "../../../service/data/user.service";
 import {Role} from "../role";
 import {take} from "rxjs/operators";
+import {Authority} from "../../authority/authority";
 
 @Component({
     selector: 'role-display',
@@ -13,9 +14,10 @@ export class RoleDisplayComponent implements OnInit {
     @Input() userId: number;
     @Input() actionType: string;
     @Input() roleList: Role[];
+    displayRoleList: Role[];
 
-    constructor( private roleService: RoleService,
-                 private userService: UserService){
+    constructor(private roleService: RoleService,
+                private userService: UserService) {
 
     }
 
@@ -26,23 +28,35 @@ export class RoleDisplayComponent implements OnInit {
         }
 
         if (this.actionType === 'Update') {
-            if (this.userId) {
-                this.userService.getRolesByUserId(this.userId).pipe(take(1))
-                    .subscribe(roleList => {
-                        this.roleList = roleList
-                        if (this.roleList) {
-                            if (this.roleList.length !== null && this.roleList.length > 0) {
-                                this.roleList.forEach(role => {
-                                    role.isAssigned = true;
-                                })
-                            } else {
-                                this.roleService.getRoleList().pipe(take(1))
-                                    .subscribe(roleList => this.roleList = roleList);
-                            }
-                        }
-                    });
-            }
+            this.roleService.getRoleList()
+                .pipe(take(1)).subscribe(
+                response => {
+                    this.roleList = response;
+                    if (this.userId) {
+                        this.assignRole(this.roleList);
+                    }
+                }
+            );
         }
+    }
+
+    private assignRole(roles: Role[]) {
+        this.userService.getRolesByUserId(this.userId).pipe(take(1))
+            .subscribe(displayRoleList => {
+                this.displayRoleList = displayRoleList;
+                if (this.displayRoleList) {
+                    this.displayRoleList.forEach(displayRole => {
+                        roles.forEach(role => {
+                            if (displayRole.status !== 0) {
+                                if (role.roleId === displayRole.roleId) {
+                                    role.isAssigned = true;
+                                }
+                            }
+
+                        })
+                    });
+                }
+            })
     }
 
     public isUnassigned(): void {

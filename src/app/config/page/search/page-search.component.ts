@@ -19,7 +19,6 @@ import {Module} from "../../module/module";
     encapsulation: ViewEncapsulation.None
 })
 export class PageSearchComponent implements OnInit {
-
     @Input() pageVo: PageVo;
     @ViewChild('pageSearchForm') pageSearchForm: NgForm;
     dialogRef: MatDialogRef<PageDialogComponent>;

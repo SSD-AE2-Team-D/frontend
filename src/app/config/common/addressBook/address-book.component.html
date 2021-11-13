@@ -24,6 +24,46 @@
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
             <mat-form-field class="full-wid" appearance="outline">
+                <mat-label>Country</mat-label>
+                <mat-select placeholder="Country" name="countryId"
+                            [(ngModel)]="addressBook.countryId" (selectionChange)="getLocationList()" #countryId="ngModel"
+                            required>
+                    <mat-option *ngFor="let country of countryList"
+                                [value]="country.countryId">
+                        {{country.countryName}}
+                    </mat-option>
+                </mat-select>
+                <div *ngIf="countryId.errors && (countryId.dirty || countryId.touched)">
+                    <small class="gene-block" *ngIf="countryId.errors.required && countryId.touched"
+                           class="mat-text-warn">
+                        You must select a country.
+                    </small>
+                </div>
+            </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
+            <mat-form-field class="full-wid" appearance="outline">
+                <mat-label>Location</mat-label>
+                <mat-select placeholder="Location" name="locationId"
+                            [(ngModel)]="addressBook.locationId" #locationId="ngModel"
+                            required>
+                    <mat-option *ngFor="let location of locationList"
+                                [value]="location.locationId">
+                        {{location.locationName}}
+                    </mat-option>
+                </mat-select>
+                <div *ngIf="locationId.errors && (locationId.dirty || locationId.touched)">
+                    <small class="gene-block" *ngIf="locationId.errors.required && locationId.touched"
+                           class="mat-text-warn">
+                        You must select a location.
+                    </small>
+                </div>
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
+            <mat-form-field class="full-wid" appearance="outline">
                 <mat-label>Postal Code</mat-label>
                 <input matInput placeholder="Postal Code" name="postalCode" [(ngModel)]="addressBook.postalCode"
                        #PostalCode="ngModel">
