@@ -110,6 +110,7 @@ export class CustomerSearchComponent implements OnInit {
     }
 
     public searchCustomer(): void {
+        this.customerVo.organizationId = Number(window.sessionStorage.getItem('organizationId'));
         this.customerService.customerSearch(this.customerVo).pipe(take(1))
             .subscribe((customer) => {
                 this.customerInfoTable = customer;

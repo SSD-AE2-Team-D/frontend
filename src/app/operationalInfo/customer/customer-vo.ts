@@ -7,6 +7,7 @@ export class CustomerVo {
     titleTypeId: number;
     genderTypeId: number;
     customerTypeId: number;
+    organizationId: number;
     countryId: number;
     locationId: number;
     status: number;

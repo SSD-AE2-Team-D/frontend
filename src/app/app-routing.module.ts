@@ -11,6 +11,7 @@ import {RoleComponent} from "./config/role/role.component";
 import {UserComponent} from "./config/user/user.component";
 import {CountryComponent} from "./masterInfo/country/country.component";
 import {LocationComponent} from "./masterInfo/location/location.component";
+import {CustomerComponent} from "./operationalInfo/customer/customer.component";
 
 const routes: Routes = [
     {path: '', component: LoginComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
             {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
             {path: 'country', component: CountryComponent, canActivate: [AuthGuard]},
             {path: 'location', component: LocationComponent, canActivate: [AuthGuard]},
+            {path: 'customer', component: CustomerComponent, canActivate: [AuthGuard]},
         ]
     },
 ];

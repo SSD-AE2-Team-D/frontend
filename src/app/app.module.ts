@@ -94,6 +94,7 @@ import {
     CustomerDialogComponent,
     CustomerSearchComponent
 } from "./operationalInfo/customer/search/customer-search.component";
+import {MatTableExporterModule} from "mat-table-exporter";
 
 @NgModule({
     declarations: [
@@ -194,6 +195,7 @@ import {
         MatTooltipModule,
         MatDatepickerModule,
         MatSortModule,
+        MatTableExporterModule,
         OwlDateTimeModule,
         OwlNativeDateTimeModule,
         AgGridModule,

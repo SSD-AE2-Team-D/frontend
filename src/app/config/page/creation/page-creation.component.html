@@ -116,7 +116,13 @@
                         </mat-form-field>
                     </div>
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-                        <authority-display [authorityList]="defaultAuthorityList" [actionType]="actionType" [pageId]="page.pageId"></authority-display>
+                        <div class="mat-card-devHdr" style="font-size: medium; font-weight: bold">Authority</div>
+                        <mat-card-content>
+                            <mat-card fxFlex="50%">
+                                <authority-display [authorityList]="defaultAuthorityList" [actionType]="actionType"
+                                                   [pageId]="page.pageId"></authority-display>
+                            </mat-card>
+                        </mat-card-content>
                     </div>
                 </div>
             </mat-card-content>

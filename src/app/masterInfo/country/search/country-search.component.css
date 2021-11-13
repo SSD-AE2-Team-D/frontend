@@ -53,3 +53,7 @@ div.mat-form-field-flex {
 .mat-text-warn{
     color: #ec1313;
 }
+
+.spacer{
+    flex: auto;
+}

@@ -136,7 +136,8 @@
             </mat-form-field>
         </div>
         <div class="example-container mat-elevation-z8" style="overflow: auto;">
-            <table mat-table [dataSource]="customerInfoTableDataSource" matSort style="width: 100%">
+            <table mat-table matTableExporter [dataSource]="customerInfoTableDataSource" matSort style="width: 100%"
+                   #exporter="matTableExporter" [hiddenColumns]="[0]">
                 <ng-container matColumnDef="CustomerType">
                     <th mat-header-cell *matHeaderCellDef style="font-size: small; font-weight:bold;"> Customer Type
                     </th>
@@ -258,6 +259,24 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[25]"></mat-paginator>
+            <button mat-raised-button
+                    (click)="exporter.exportTable('xlsx', {fileName:'customer', sheet: 'sheet_name', Props: {Author: 'Talha'}})">
+                <span style="font-size: medium; font-weight: bold; color: #2eb82e"> Excel</span>
+            </button>
+            &nbsp;
+            <button mat-raised-button (click)="exporter.exportTable('csv', {fileName:'customer', sheet: 'sheet_name', Props: {Author: 'Talha'}})">
+                <span style="font-size: medium; font-weight: bold; color: #009999"> Csv</span>
+            </button>
+            &nbsp;
+            <button mat-raised-button (click)="exporter.exportTable('json', {fileName:'customer', sheet: 'sheet_name', Props: {Author: 'Talha'}})">
+                <span style="font-size: medium; font-weight: bold; color: #ec1313"> Json</span>
+            </button>
+            &nbsp;
+            <button mat-raised-button (click)="exporter.exportTable('txt', {fileName:'customer', sheet: 'sheet_name', Props: {Author: 'Talha'}})">
+                <span style="font-size: medium; font-weight: bold; color: #24292e"> Txt</span>
+            </button>
+            &nbsp;
+
         </div>
     </form>
 </mat-card>

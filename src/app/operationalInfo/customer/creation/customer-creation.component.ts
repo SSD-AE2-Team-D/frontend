@@ -82,6 +82,27 @@ export class CustomerCreationComponent implements OnInit {
     }
 
     public createCustomer(): void {
+        console.log(this.customer.identificationNumber);
+        console.log(this.customer.passportNumber);
+        if (this.customer.customerTypeId === 1) {
+            if (this.customer.identificationNumber === undefined) {
+                this.snackBar.open('ID number cannot empty', 'Error', <MatSnackBarConfig>{
+                    duration: 6000,
+                    panelClass: ['red-snackbar']
+                });
+                return;
+            }
+        }
+        if (this.customer.customerTypeId === 2) {
+            if (this.customer.passportNumber === undefined) {
+                this.snackBar.open('Passport number cannot empty', 'Error', <MatSnackBarConfig>{
+                    duration: 6000,
+                    panelClass: ['red-snackbar']
+                });
+                return;
+            }
+        }
+
         this.customer.organizationId = Number(window.sessionStorage.getItem('organizationId'));
         this.customerService.postCustomer(this.customer).pipe(take(1)).subscribe((customer) => {
             this.customer = customer;
@@ -95,9 +116,31 @@ export class CustomerCreationComponent implements OnInit {
                 panelClass: ['red-snackbar']
             });
         })
+
     }
 
     public updateCustomer(): void {
+        console.log(this.customer.identificationNumber);
+        console.log(this.customer.passportNumber);
+        if (this.customer.customerTypeId === 1) {
+            if (this.customer.identificationNumber === null) {
+                this.snackBar.open('ID number cannot empty', 'Error', <MatSnackBarConfig>{
+                    duration: 6000,
+                    panelClass: ['red-snackbar']
+                });
+                return;
+            }
+        }
+        if (this.customer.customerTypeId === 2) {
+            if (this.customer.passportNumber === null) {
+                this.snackBar.open('Passport number cannot empty', 'Error', <MatSnackBarConfig>{
+                    duration: 6000,
+                    panelClass: ['red-snackbar']
+                });
+                return;
+            }
+        }
+
         this.customerService.putCustomer(this.customer).subscribe(customer => {
             this.customer = customer;
             this.snackBar.open('Customer updated', 'success', <MatSnackBarConfig>{
@@ -108,6 +151,7 @@ export class CustomerCreationComponent implements OnInit {
                 panelClass: ['red-snackbar']
             });
         })
+
     }
 
     public deleteCustomer(): void {

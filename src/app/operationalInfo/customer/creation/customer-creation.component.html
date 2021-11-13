@@ -30,8 +30,8 @@
                                         [(ngModel)]="customer.titleTypeId" #titleTypeId="ngModel"
                                         required>
                                 <mat-option *ngFor="let titleType of titleTypeList"
-                                            [value]="titleTypeId.titleTypeId">
-                                    {{titleTypeId.titleDescription}}
+                                            [value]="titleType.titleTypeId">
+                                    {{titleType.titleDescription}}
                                 </mat-option>
                             </mat-select>
                             <div *ngIf="titleTypeId.errors && (titleTypeId.dirty || titleTypeId.touched)">
