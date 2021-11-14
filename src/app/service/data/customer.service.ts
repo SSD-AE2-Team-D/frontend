@@ -10,7 +10,6 @@ import {CustomerType} from "../../util/customer-type";
 import {Customer} from "../../operationalInfo/customer/customer";
 import {CustomerVo} from "../../operationalInfo/customer/customer-vo";
 
-
 @Injectable({
     providedIn: 'root'
 })

@@ -55,7 +55,7 @@ export class CustomerSearchComponent implements OnInit {
             this.customerVo = new CustomerVo();
         }
 
-        this.countryService.getMasterDataStatus('SEARCH')
+        this.customerService.getMasterDataStatus('SEARCH')
             .pipe(take(1)).subscribe(
             response => this.statusList = response
         );

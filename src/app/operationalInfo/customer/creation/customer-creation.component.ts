@@ -82,8 +82,6 @@ export class CustomerCreationComponent implements OnInit {
     }
 
     public createCustomer(): void {
-        console.log(this.customer.identificationNumber);
-        console.log(this.customer.passportNumber);
         if (this.customer.customerTypeId === 1) {
             if (this.customer.identificationNumber === undefined) {
                 this.snackBar.open('ID number cannot empty', 'Error', <MatSnackBarConfig>{
@@ -101,6 +99,22 @@ export class CustomerCreationComponent implements OnInit {
                 });
                 return;
             }
+        }
+
+        if (this.customer.addressBook.countryId === undefined || this.customer.addressBook.countryId === null) {
+            this.snackBar.open('Country cannot empty', 'Error', <MatSnackBarConfig>{
+                duration: 6000,
+                panelClass: ['red-snackbar']
+            });
+            return;
+        }
+
+        if (this.customer.addressBook.locationId === undefined || this.customer.addressBook.locationId === null) {
+            this.snackBar.open('Location cannot empty', 'Error', <MatSnackBarConfig>{
+                duration: 6000,
+                panelClass: ['red-snackbar']
+            });
+            return;
         }
 
         this.customer.organizationId = Number(window.sessionStorage.getItem('organizationId'));
@@ -139,6 +153,22 @@ export class CustomerCreationComponent implements OnInit {
                 });
                 return;
             }
+        }
+
+        if (this.customer.addressBook.countryId === undefined || this.customer.addressBook.countryId === null) {
+            this.snackBar.open('Country cannot empty', 'Error', <MatSnackBarConfig>{
+                duration: 6000,
+                panelClass: ['red-snackbar']
+            });
+            return;
+        }
+
+        if (this.customer.addressBook.locationId === undefined || this.customer.addressBook.locationId === null) {
+            this.snackBar.open('Location cannot empty', 'Error', <MatSnackBarConfig>{
+                duration: 6000,
+                panelClass: ['red-snackbar']
+            });
+            return;
         }
 
         this.customerService.putCustomer(this.customer).subscribe(customer => {

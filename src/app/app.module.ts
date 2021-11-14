@@ -86,7 +86,7 @@ import {CountryComponent} from "./masterInfo/country/country.component";
 import {CountryCreationComponent} from "./masterInfo/country/creation/country-creation.component";
 import {CountryDialogComponent, CountrySearchComponent} from "./masterInfo/country/search/country-search.component";
 import {LocationComponent} from "./masterInfo/location/location.component";
-import { LocationCreationComponent } from "./masterInfo/location/creation/location-creation.component";
+import {LocationCreationComponent} from "./masterInfo/location/creation/location-creation.component";
 import {LocationDialogComponent, LocationSearchComponent} from "./masterInfo/location/search/location-search.component";
 import {CustomerComponent} from "./operationalInfo/customer/customer.component";
 import {CustomerCreationComponent} from "./operationalInfo/customer/creation/customer-creation.component";
@@ -95,6 +95,11 @@ import {
     CustomerSearchComponent
 } from "./operationalInfo/customer/search/customer-search.component";
 import {MatTableExporterModule} from "mat-table-exporter";
+import {HotelComponent} from "./operationalInfo/hotel/hotel.component";
+import {HotelCreationComponent} from "./operationalInfo/hotel/creation/hotel-creation.component";
+import {TypeFeatureGridComponent} from "./operationalInfo/hotel/creation/typefeature/type-feature-grid.component";
+import {FeatureDisplayComponent} from "./operationalInfo/hotel/creation/typefeature/featureDisplay/feature-display.component";
+import {HotelDialogComponent, HotelSearchComponent} from "./operationalInfo/hotel/search/hotel-search.component";
 
 @NgModule({
     declarations: [
@@ -110,6 +115,7 @@ import {MatTableExporterModule} from "mat-table-exporter";
         CountryComponent,
         LocationComponent,
         CustomerComponent,
+        HotelComponent,
         ModuleCreationComponent,
         ModuleSearchComponent,
         OrganizationCreationComponent,
@@ -126,6 +132,9 @@ import {MatTableExporterModule} from "mat-table-exporter";
         LocationSearchComponent,
         CustomerCreationComponent,
         CustomerSearchComponent,
+        HotelCreationComponent,
+        HotelSearchComponent,
+        TypeFeatureGridComponent,
         AuditComponent,
         AddressBookComponent,
         ConfirmDialogComponent,
@@ -137,9 +146,11 @@ import {MatTableExporterModule} from "mat-table-exporter";
         CountryDialogComponent,
         LocationDialogComponent,
         CustomerDialogComponent,
+        HotelDialogComponent,
         AuthorityDisplayComponent,
         PageDisplayComponent,
         RoleDisplayComponent,
+        FeatureDisplayComponent,
         SelectCheckAllComponent,
         AuthorityTruncatePipe
     ],
@@ -151,7 +162,8 @@ import {MatTableExporterModule} from "mat-table-exporter";
         UserDialogComponent,
         CountryDialogComponent,
         LocationDialogComponent,
-        CustomerDialogComponent
+        CustomerDialogComponent,
+        HotelDialogComponent
     ],
     imports: [
         BrowserModule,
