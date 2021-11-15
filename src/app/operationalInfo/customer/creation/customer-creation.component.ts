@@ -134,8 +134,6 @@ export class CustomerCreationComponent implements OnInit {
     }
 
     public updateCustomer(): void {
-        console.log(this.customer.identificationNumber);
-        console.log(this.customer.passportNumber);
         if (this.customer.customerTypeId === 1) {
             if (this.customer.identificationNumber === null) {
                 this.snackBar.open('ID number cannot empty', 'Error', <MatSnackBarConfig>{

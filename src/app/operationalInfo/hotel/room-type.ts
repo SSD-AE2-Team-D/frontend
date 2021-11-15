@@ -7,4 +7,6 @@ export class RoomType extends SharedModel {
     roomTypeDescription: string;
 
     roomFeatures: RoomFeature[] = [];
+
+    hotelId: any;
 }

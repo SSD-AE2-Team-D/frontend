@@ -5,6 +5,8 @@ import {RoomFeature} from "../../room-feature";
 import {NgForm} from "@angular/forms";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {FeatureDisplayComponent} from "./featureDisplay/feature-display.component";
+import {HotelService} from "../../../../service/data/hotel.service";
+import {take} from "rxjs/operators";
 
 @Component({
     selector: 'app-hotel-type-feature',
@@ -19,7 +21,8 @@ export class TypeFeatureGridComponent implements OnInit {
     @Input() roomTypeList: RoomType[] = [];
     @ViewChildren(FeatureDisplayComponent) roomFeatureDisplayList: QueryList<FeatureDisplayComponent>;
 
-    constructor(private snackBar: MatSnackBar,) {
+    constructor(private snackBar: MatSnackBar,
+                private hotelService: HotelService) {
         const roomTypes: rt[] = [];
         this.dataSource = new MatTableDataSource(roomTypes);
     }
@@ -46,6 +49,7 @@ export class TypeFeatureGridComponent implements OnInit {
             roomTypeId: null,
             roomType: '',
             roomTypeDescription: '',
+            status: null,
             roomFeatures: [],
         };
     }
@@ -55,6 +59,7 @@ export class TypeFeatureGridComponent implements OnInit {
             roomTypeId: roomType.roomTypeId,
             roomType: roomType.roomType,
             roomTypeDescription: '',
+            status: roomType.status,
             roomFeatures: roomType.roomFeatures,
         };
     }
@@ -63,7 +68,6 @@ export class TypeFeatureGridComponent implements OnInit {
         this.dataSource.data.push(this.createEmptyRow());
         this.dataSource.filter = "";
     }
-
 
     delete(elm: any, id: any) {
         if (id === null) {
@@ -78,7 +82,12 @@ export class TypeFeatureGridComponent implements OnInit {
             }
         } else {
             if (this.dataSource.data.length > 1) {
-
+                this.hotelService.deleteRoomTypeLineItem(id).pipe(take(1)).subscribe(roomType => {
+                    this.snackBar.open('Room Type Line Deleted', 'success', <MatSnackBarConfig>{
+                        duration: 3000
+                    });
+                    this.dataSource.data = this.dataSource.data.filter(i => i !== elm)
+                });
             } else {
                 this.snackBar.open('row remove not allow', 'Error', <MatSnackBarConfig>{
                     duration: 6000,
@@ -99,5 +108,6 @@ export interface rt {
     roomTypeId: any;
     roomType: string;
     roomTypeDescription: string;
+    status: any;
     roomFeatures: RoomFeature[];
 }

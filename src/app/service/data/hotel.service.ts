@@ -9,6 +9,8 @@ import {HotelVo} from "../../operationalInfo/hotel/hotel-vo";
 import {HotelCategoryType} from "../../util/hotel-category-type";
 import {StarGrading} from "../../util/star-grading";
 import {RoomFeatureType} from "../../util/room-feature-type";
+import {RoomFeature} from "../../operationalInfo/hotel/room-feature";
+import {RoomType} from "../../operationalInfo/hotel/room-type";
 
 @Injectable({
     providedIn: 'root'
@@ -45,6 +47,11 @@ export class HotelService {
                 retry(1),
                 catchError(this.processError)
             )
+    }
+
+    deleteRoomTypeLineItem(roomTypeId: number): Observable<RoomType> {
+        return this.http.put(HttpService.SERVICE_PATH + 'hotels/' + roomTypeId, this.httpHeader)
+            .pipe(map(response => <RoomType>response));
     }
 
     hotelSearch(hotelVo: HotelVo): Observable<Hotel[]> {

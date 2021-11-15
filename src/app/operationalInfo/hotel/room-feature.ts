@@ -7,4 +7,6 @@ export class RoomFeature extends SharedModel {
     featureDescription: string;
 
     isAssigned: boolean;
+
+    roomTypeId: any;
 }

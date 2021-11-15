@@ -91,18 +91,50 @@ export class HotelCreationComponent implements OnInit {
         this.addressBookComponent.addressBookForm.resetForm();
     }
 
+    public filterDuplicateRoomType(): any {
+        const allList: RoomType[] = [];
+        const withDuplicates: any[] = [];
+        this.typeFeatureDisplayList.forEach(typeFeature => {
+            typeFeature.dataSource.data.forEach(data => {
+                if (data.roomType !== "") {
+                    const roomTypeData = new RoomType();
+                    roomTypeData.roomType = data.roomType
+                    data.roomFeatures.forEach(fe => {
+                        if (fe.isAssigned) {
+                            roomTypeData.roomFeatures.push(fe);
+                        }
+                    })
+                    allList.push(roomTypeData)
+                }
+            })
+        })
+        const res: RoomType[] = [];
+        allList.map(function (item) {
+            const existItem = res.find(x => x.roomType === item.roomType);
+            if (existItem) {
+                withDuplicates.push(item);
+            } else {
+                res.push(item);
+            }
+        });
+        return withDuplicates;
+    }
+
+
     public createHotel(): void {
         const roomTypeList: RoomType[] = [];
         this.typeFeatureDisplayList.forEach(typeFeature => {
             typeFeature.dataSource.data.forEach(data => {
-                const roomTypeData = new RoomType();
-                roomTypeData.roomType = data.roomType
-                data.roomFeatures.forEach(fe => {
-                    if (fe.isAssigned) {
-                        roomTypeData.roomFeatures.push(fe);
-                    }
-                })
-                roomTypeList.push(roomTypeData)
+                if (data.roomType !== "") {
+                    const roomTypeData = new RoomType();
+                    roomTypeData.roomType = data.roomType
+                    data.roomFeatures.forEach(fe => {
+                        if (fe.isAssigned) {
+                            roomTypeData.roomFeatures.push(fe);
+                        }
+                    })
+                    roomTypeList.push(roomTypeData)
+                }
             })
         })
 
@@ -122,8 +154,23 @@ export class HotelCreationComponent implements OnInit {
             return;
         }
 
-        this.hotel.roomTypes = roomTypeList;
+        if (roomTypeList.length === 0) {
+            this.snackBar.open('Room type cannot empty', 'Error', <MatSnackBarConfig>{
+                duration: 6000,
+                panelClass: ['red-snackbar']
+            });
+            return;
+        }
 
+        if (this.filterDuplicateRoomType().length > 0) {
+            this.snackBar.open('Duplicate room type', 'Error', <MatSnackBarConfig>{
+                duration: 6000,
+                panelClass: ['red-snackbar']
+            });
+            return;
+        }
+
+        this.hotel.roomTypes = roomTypeList;
         this.hotel.organizationId = Number(window.sessionStorage.getItem('organizationId'));
         this.hotelService.postHotel(this.hotel).pipe(take(1)).subscribe((hotel) => {
             this.hotel = hotel;
@@ -160,7 +207,6 @@ export class HotelCreationComponent implements OnInit {
                 roomTypeList.push(roomTypeData)
             })
         })
-
         if (this.hotel.addressBook.countryId === undefined || this.hotel.addressBook.countryId === null) {
             this.snackBar.open('Country cannot empty', 'Error', <MatSnackBarConfig>{
                 duration: 6000,
@@ -177,10 +223,15 @@ export class HotelCreationComponent implements OnInit {
             return;
         }
 
+        if (this.filterDuplicateRoomType().length > 0) {
+            this.snackBar.open('Duplicate room type', 'Error', <MatSnackBarConfig>{
+                duration: 6000,
+                panelClass: ['red-snackbar']
+            });
+            return;
+        }
+
         this.hotel.roomTypes = roomTypeList;
-
-
-
         this.hotelService.putHotel(this.hotel).subscribe(hotel => {
             this.hotel = hotel;
             this.snackBar.open('Hotel updated', 'success', <MatSnackBarConfig>{
