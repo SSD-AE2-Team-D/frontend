@@ -50,7 +50,6 @@ export class HotelCreationComponent implements OnInit {
                 public dialog: MatDialog,
                 private hotelService: HotelService,
                 public rolePermission: RolePermission) {
-
     }
 
     ngOnInit() {
@@ -190,7 +189,6 @@ export class HotelCreationComponent implements OnInit {
         const roomTypeList: RoomType[] = [];
         this.typeFeatureDisplayList.forEach(typeFeature => {
             typeFeature.dataSource.data.forEach(data => {
-                console.log(data.roomFeatures)
                 const roomTypeData = new RoomType();
                 roomTypeData.roomType = data.roomType
                 roomTypeData.roomTypeId = data.roomTypeId

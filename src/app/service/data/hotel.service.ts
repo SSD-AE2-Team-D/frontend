@@ -9,7 +9,6 @@ import {HotelVo} from "../../operationalInfo/hotel/hotel-vo";
 import {HotelCategoryType} from "../../util/hotel-category-type";
 import {StarGrading} from "../../util/star-grading";
 import {RoomFeatureType} from "../../util/room-feature-type";
-import {RoomFeature} from "../../operationalInfo/hotel/room-feature";
 import {RoomType} from "../../operationalInfo/hotel/room-type";
 
 @Injectable({
@@ -62,6 +61,22 @@ export class HotelService {
             )
     }
 
+    getHotelList(organizationId: number): Observable<Hotel[]> {
+        let params = new HttpParams();
+        params = params.set('organizationId', organizationId.toString());
+        return this.http.get(HttpService.SERVICE_PATH + 'hotels/getHotelList', {
+            params: params
+        }).pipe(map(response => <Hotel[]>response));
+    }
+
+    getRoomTypeListHotelWise(hotelId: number): Observable<RoomType[]> {
+        let params = new HttpParams();
+        params = params.set('hotelId', hotelId.toString());
+        return this.http.get(HttpService.SERVICE_PATH + 'hotels/getRoomTypeListHotelWise', {
+            params: params
+        }).pipe(map(response => <RoomType[]>response));
+    }
+
     getHotelCategoryTypeList(): Observable<HotelCategoryType[]> {
         return this.http.get(HttpService.SERVICE_PATH + 'hotels/getHotelCategoryTypeList', this.httpHeader)
             .pipe(map(response => <HotelCategoryType[]>response));
@@ -95,6 +110,4 @@ export class HotelService {
         console.log(message);
         return throwError(message);
     }
-
-
 }

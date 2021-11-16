@@ -100,6 +100,17 @@ import {HotelCreationComponent} from "./operationalInfo/hotel/creation/hotel-cre
 import {TypeFeatureGridComponent} from "./operationalInfo/hotel/creation/typefeature/type-feature-grid.component";
 import {FeatureDisplayComponent} from "./operationalInfo/hotel/creation/typefeature/featureDisplay/feature-display.component";
 import {HotelDialogComponent, HotelSearchComponent} from "./operationalInfo/hotel/search/hotel-search.component";
+import {HotelService} from "./service/data/hotel.service";
+import {PackageService} from "./service/data/package.service";
+import {PackageComponent} from "./operationalInfo/package/package.component";
+import {PackageCreationComponent} from "./operationalInfo/package/creation/package-creation.component";
+import { StayComponent } from "./operationalInfo/package/creation/stay/stay.component";
+import { ActivityDisplayComponent } from "./operationalInfo/package/creation/stay/activityDisplay/activity-display.component";
+import {
+    HotelPackageDialogComponent,
+    StayHistoryComponent
+} from "./operationalInfo/package/search/stayHistory/stay-history.component";
+import {PackageSearchComponent} from "./operationalInfo/package/search/package-search.component";
 
 @NgModule({
     declarations: [
@@ -116,6 +127,7 @@ import {HotelDialogComponent, HotelSearchComponent} from "./operationalInfo/hote
         LocationComponent,
         CustomerComponent,
         HotelComponent,
+        PackageComponent,
         ModuleCreationComponent,
         ModuleSearchComponent,
         OrganizationCreationComponent,
@@ -135,6 +147,10 @@ import {HotelDialogComponent, HotelSearchComponent} from "./operationalInfo/hote
         HotelCreationComponent,
         HotelSearchComponent,
         TypeFeatureGridComponent,
+        PackageCreationComponent,
+        PackageSearchComponent,
+        StayComponent,
+        StayHistoryComponent,
         AuditComponent,
         AddressBookComponent,
         ConfirmDialogComponent,
@@ -147,10 +163,12 @@ import {HotelDialogComponent, HotelSearchComponent} from "./operationalInfo/hote
         LocationDialogComponent,
         CustomerDialogComponent,
         HotelDialogComponent,
+        HotelPackageDialogComponent,
         AuthorityDisplayComponent,
         PageDisplayComponent,
         RoleDisplayComponent,
         FeatureDisplayComponent,
+        ActivityDisplayComponent,
         SelectCheckAllComponent,
         AuthorityTruncatePipe
     ],
@@ -163,7 +181,8 @@ import {HotelDialogComponent, HotelSearchComponent} from "./operationalInfo/hote
         CountryDialogComponent,
         LocationDialogComponent,
         CustomerDialogComponent,
-        HotelDialogComponent
+        HotelDialogComponent,
+        HotelPackageDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -228,6 +247,8 @@ import {HotelDialogComponent, HotelSearchComponent} from "./operationalInfo/hote
         OrganizationService,
         CountryService,
         LocationService,
+        HotelService,
+        PackageService,
         PageTitleService,
         RolePermission],
     exports: [FlexLayoutModule,],

@@ -13,6 +13,7 @@ import {CountryComponent} from "./masterInfo/country/country.component";
 import {LocationComponent} from "./masterInfo/location/location.component";
 import {CustomerComponent} from "./operationalInfo/customer/customer.component";
 import {HotelComponent} from "./operationalInfo/hotel/hotel.component";
+import {PackageComponent} from "./operationalInfo/package/package.component";
 
 const routes: Routes = [
     {path: '', component: LoginComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
             {path: 'location', component: LocationComponent, canActivate: [AuthGuard]},
             {path: 'customer', component: CustomerComponent, canActivate: [AuthGuard]},
             {path: 'hotel', component: HotelComponent, canActivate: [AuthGuard]},
+            {path: 'package', component: PackageComponent, canActivate: [AuthGuard]},
         ]
     },
 ];
