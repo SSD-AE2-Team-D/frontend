@@ -104,13 +104,14 @@ import {HotelService} from "./service/data/hotel.service";
 import {PackageService} from "./service/data/package.service";
 import {PackageComponent} from "./operationalInfo/package/package.component";
 import {PackageCreationComponent} from "./operationalInfo/package/creation/package-creation.component";
-import { StayComponent } from "./operationalInfo/package/creation/stay/stay.component";
+import {PackageFeedbackDialogComponent, StayComponent} from "./operationalInfo/package/creation/stay/stay.component";
 import { ActivityDisplayComponent } from "./operationalInfo/package/creation/stay/activityDisplay/activity-display.component";
 import {
     HotelPackageDialogComponent,
     StayHistoryComponent
 } from "./operationalInfo/package/search/stayHistory/stay-history.component";
 import {PackageSearchComponent} from "./operationalInfo/package/search/package-search.component";
+import {StayFeedbackComponent} from "./operationalInfo/package/feedback/stayFeedback/stay-feedback.component";
 
 @NgModule({
     declarations: [
@@ -151,6 +152,7 @@ import {PackageSearchComponent} from "./operationalInfo/package/search/package-s
         PackageSearchComponent,
         StayComponent,
         StayHistoryComponent,
+        StayFeedbackComponent,
         AuditComponent,
         AddressBookComponent,
         ConfirmDialogComponent,
@@ -163,6 +165,7 @@ import {PackageSearchComponent} from "./operationalInfo/package/search/package-s
         LocationDialogComponent,
         CustomerDialogComponent,
         HotelDialogComponent,
+        PackageFeedbackDialogComponent,
         HotelPackageDialogComponent,
         AuthorityDisplayComponent,
         PageDisplayComponent,
@@ -182,7 +185,8 @@ import {PackageSearchComponent} from "./operationalInfo/package/search/package-s
         LocationDialogComponent,
         CustomerDialogComponent,
         HotelDialogComponent,
-        HotelPackageDialogComponent
+        HotelPackageDialogComponent,
+        PackageFeedbackDialogComponent
     ],
     imports: [
         BrowserModule,

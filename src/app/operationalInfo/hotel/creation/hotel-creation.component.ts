@@ -23,7 +23,6 @@ import {StarGrading} from "../../../util/star-grading";
 import {TypeFeatureGridComponent} from "./typefeature/type-feature-grid.component";
 import {RoomType} from "../room-type";
 import {ConfirmDialogComponent, ConfirmDialogModel} from "../../../shared/confirm-dialog/confirm-dialog.component";
-import {RoomFeature} from "../room-feature";
 
 @Component({
     selector: 'app-hotel-creation',

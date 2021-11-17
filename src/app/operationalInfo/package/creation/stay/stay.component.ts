@@ -1,6 +1,6 @@
 import {
     Component,
-    EventEmitter,
+    EventEmitter, Inject,
     Input,
     OnInit,
     Output, QueryList,
@@ -9,7 +9,7 @@ import {
     ViewEncapsulation
 } from "@angular/core";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
-import {MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {HotelService} from "../../../../service/data/hotel.service";
 import {RolePermission} from "../../../../shared/rolePermission/rolePermission";
 import {NgForm} from "@angular/forms";
@@ -37,6 +37,7 @@ export class StayComponent implements OnInit {
     @Output() onDelete: EventEmitter<number> = new EventEmitter<number>();
     @Output() onCancel: EventEmitter<void> = new EventEmitter<void>();
     @ViewChild('stayForm') stayForm: NgForm;
+    dialogRef: MatDialogRef<PackageFeedbackDialogComponent>;
     hotelList: Hotel[];
     roomTypeList: RoomType[];
     statusList: MasterStatus[];
@@ -178,4 +179,28 @@ export class StayComponent implements OnInit {
             });
         });
     }
+
+    openDialog(packageId: any) {
+        this.dialogRef = this.dialog.open(PackageFeedbackDialogComponent, {
+            disableClose: false,
+            width: '50%',
+            data: {packageId: packageId,},
+            height: '40%'
+        });
+    }
+
+}
+
+@Component({
+    selector: 'app-package-feedback-modal',
+    template: '<app-feedback [packageId]="data.packageId"  (onCancel)="closeModal($event)"></app-feedback>'
+})
+export class PackageFeedbackDialogComponent {
+    constructor(public dialogRef: MatDialogRef<PackageFeedbackDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    }
+
+    closeModal(feedbackId: any) {
+        this.dialogRef.close(feedbackId);
+    }
+
 }

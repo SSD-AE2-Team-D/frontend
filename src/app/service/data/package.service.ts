@@ -7,6 +7,7 @@ import {catchError, map, retry} from "rxjs/operators";
 import {HotelPackageActivityType} from "../../util/hotel-package-activity-type";
 import {HotelPackage} from "../../operationalInfo/package/creation/stay/hotel-package";
 import {HotelPackageVo} from "../../operationalInfo/package/search/stayHistory/hotel-package-vo";
+import {PackageFeedback} from "../../operationalInfo/package/feedback/package-feedback";
 
 @Injectable({
     providedIn: 'root'
@@ -23,6 +24,14 @@ export class PackageService {
 
     postHotelPackage(hotelPackage: HotelPackage): Observable<HotelPackage> {
         return this.http.post<HotelPackage>(HttpService.SERVICE_PATH + 'packages/', JSON.stringify(hotelPackage), this.httpHeader)
+            .pipe(
+                retry(1),
+                catchError(this.processError)
+            )
+    }
+
+    postFeedback(packageFeedback: PackageFeedback): Observable<PackageFeedback> {
+        return this.http.post<PackageFeedback>(HttpService.SERVICE_PATH + 'packages/feedback', JSON.stringify(packageFeedback), this.httpHeader)
             .pipe(
                 retry(1),
                 catchError(this.processError)

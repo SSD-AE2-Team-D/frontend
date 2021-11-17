@@ -29,7 +29,7 @@
                         <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>Hotel</mat-label>
                             <input matInput placeholder="Hotel"
-                                [value]="hotelPackage.hotel.hotelName" readonly>
+                                   [value]="hotelPackage.hotel.hotelName" readonly>
                         </mat-form-field>
                     </div>
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
@@ -179,12 +179,19 @@
                         <mat-card-content>
                             <mat-card fxFlex="75%">
                                 <app-package-activity-display
-                                        [actionType]="actionType" [displayPackageActivityList]="hotelPackage.hotelPackageActivities"></app-package-activity-display>
+                                        [actionType]="actionType"
+                                        [displayPackageActivityList]="hotelPackage.hotelPackageActivities"></app-package-activity-display>
                             </mat-card>
                         </mat-card-content>
                     </div>
                 </div>
             </mat-card-content>
+            <div *ngIf="isUpdate" style="float: right">
+                <button mat-raised-button color="accent"
+                        matTooltip="Feedback" type="button" (click)="openDialog(hotelPackage.hotelPackageId)">
+                    <mat-icon>feedback</mat-icon>
+                </button>
+            </div>
             <app-audit *ngIf="hotelPackage.hotelPackageId" [createdBy]="hotelPackage.createdBy"
                        [createdDate]="hotelPackage.createdDate"
                        [lastModifiedBy]="hotelPackage.lastModifiedBy"
