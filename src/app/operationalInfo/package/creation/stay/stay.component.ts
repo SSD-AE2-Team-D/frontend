@@ -79,7 +79,6 @@ export class StayComponent implements OnInit {
         if (this.hotelPackage.roomTypeId) {
             this.getRoomTypeList();
         }
-
     }
 
     getRoomTypeList() {
@@ -121,7 +120,6 @@ export class StayComponent implements OnInit {
             });
             this.isUpdate = true;
             this.isNew = true;
-            this.actionType = 'Update';
         }, (error) => {
             this.snackBar.open('Hotel Package already exist', "error", <MatSnackBarConfig>{
                 panelClass: ['red-snackbar']
@@ -134,10 +132,10 @@ export class StayComponent implements OnInit {
         this.activityDisplayComponent.packageActivityList.forEach(selectedActivity => {
             if (selectedActivity.isAssigned) {
                 const packageActivity = new HotelPackageActivity();
+                packageActivity.hotelPackageActivityId = selectedActivity.hotelPackageActivityId
                 packageActivity.activityTypeId = selectedActivity.activityTypeId;
                 packageActivity.activityName = selectedActivity.activityName;
                 packageActivity.status = this.hotelPackage.status;
-                packageActivity.hotelPackageId = this.hotelPackage.hotelPackageId;
                 packageActivityList.push(packageActivity);
             }
         });
@@ -145,11 +143,6 @@ export class StayComponent implements OnInit {
         this.hotelPackage.hotelPackageActivities = packageActivityList;
         this.packageService.putHotelPackage(this.hotelPackage).subscribe(hotelPackage => {
             this.hotelPackage = hotelPackage;
-            this.hotelPackage.hotelPackageActivities.forEach(selectedPackage => {
-                this.activityDisplayList.forEach(activityDisplay => {
-                    activityDisplay.actionType = 'Update';
-                })
-            })
             this.snackBar.open('Hotel Package updated', 'success', <MatSnackBarConfig>{
                 duration: 3000
             });

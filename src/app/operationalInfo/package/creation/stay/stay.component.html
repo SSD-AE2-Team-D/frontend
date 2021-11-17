@@ -3,7 +3,7 @@
         <mat-card fxFlex="100%">
             <mat-card-content>
                 <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
+                    <div *ngIf="actionType=== 'Create'" fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
                         <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>Hotel</mat-label>
                             <mat-select placeholder="Hotel" name="hotelId"
@@ -23,6 +23,13 @@
                                     You must select a hotel.
                                 </small>
                             </div>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="actionType=== 'Update'" fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Hotel</mat-label>
+                            <input matInput placeholder="Hotel"
+                                [value]="hotelPackage.hotel.hotelName" readonly>
                         </mat-form-field>
                     </div>
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
@@ -172,9 +179,7 @@
                         <mat-card-content>
                             <mat-card fxFlex="75%">
                                 <app-package-activity-display
-                                        [actionType]="actionType"
-                                        [packageActivityList]="hotelPackage.hotelPackageActivities"
-                                        [displayPackageActivityList]="hotelPackage.hotelPackageActivities"></app-package-activity-display>
+                                        [actionType]="actionType" [displayPackageActivityList]="hotelPackage.hotelPackageActivities"></app-package-activity-display>
                             </mat-card>
                         </mat-card-content>
                     </div>

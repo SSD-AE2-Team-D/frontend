@@ -4,7 +4,6 @@ export class HotelPackageActivity extends SharedModel{
     hotelPackageActivityId: number;
     activityName: string;
     activityTypeId: number;
-    hotelPackageId: number;
 
     isAssigned: boolean;
 }

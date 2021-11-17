@@ -21,8 +21,10 @@ export class ActivityDisplayComponent implements OnInit {
     }
 
     ngOnInit() {
+
         if (this.actionType === 'Create') {
-            this.packageActivityList = [];
+            this.packageActivityList = []
+            this.displayPackageActivityList = []
             this.packageService.getHotelActivityTypeList().pipe(take(1))
                 .subscribe(activityTypeList => {
                     this.activityTypeList = activityTypeList;
@@ -39,7 +41,7 @@ export class ActivityDisplayComponent implements OnInit {
         }
 
         if (this.actionType === 'Update') {
-            this.packageActivityList = [];
+            this.packageActivityList = []
             this.packageService.getHotelActivityTypeList().pipe(take(1))
                 .subscribe(activityTypeList => {
                     this.activityTypeList = activityTypeList;
@@ -65,6 +67,8 @@ export class ActivityDisplayComponent implements OnInit {
                 activities.forEach(activity => {
                     if (displayActivity.status !== 0) {
                         if (displayActivity.activityTypeId === activity.activityTypeId) {
+                            activity.hotelPackageActivityId = displayActivity.hotelPackageActivityId
+                            activity.activityName = displayActivity.activityName
                             activity.isAssigned = true;
                         }
                     }
