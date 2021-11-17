@@ -56,6 +56,11 @@ export class CustomerService {
             )
     }
 
+    getCustomerList(): Observable<Customer[]> {
+        return this.http.get(HttpService.SERVICE_PATH + 'customers/getCustomerList', this.httpHeader)
+            .pipe(map(response => <Customer[]>response));
+    }
+
     getTitleList(): Observable<TitleType[]> {
         return this.http.get(HttpService.SERVICE_PATH + 'customers/getTitleList', this.httpHeader)
             .pipe(map(response => <TitleType[]>response));

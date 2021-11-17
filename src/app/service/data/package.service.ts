@@ -8,6 +8,7 @@ import {HotelPackageActivityType} from "../../util/hotel-package-activity-type";
 import {HotelPackage} from "../../operationalInfo/package/creation/stay/hotel-package";
 import {HotelPackageVo} from "../../operationalInfo/package/search/stayHistory/hotel-package-vo";
 import {PackageFeedback} from "../../operationalInfo/package/feedback/package-feedback";
+import {Hotel} from "../../operationalInfo/hotel/hotel";
 
 @Injectable({
     providedIn: 'root'
@@ -52,6 +53,14 @@ export class PackageService {
                 retry(1),
                 catchError(this.processError)
             )
+    }
+
+    viewFeedBack(packageId: number): Observable<PackageFeedback[]> {
+        let params = new HttpParams();
+        params = params.set('packageId', packageId.toString());
+        return this.http.get(HttpService.SERVICE_PATH + 'packages/viewFeedBack', {
+            params: params
+        }).pipe(map(response => <PackageFeedback[]>response));
     }
 
     getHotelActivityTypeList(): Observable<HotelPackageActivityType[]> {

@@ -25,10 +25,11 @@ export class StayHistoryComponent implements OnInit {
     @Input() hotelPackageVo: HotelPackageVo;
     @ViewChild('hotelPackageSearchForm') hotelPackageSearchForm: NgForm;
     dialogRef: MatDialogRef<HotelPackageDialogComponent>;
+    dialogFeedbackRef: MatDialogRef<HotelPackageViewFeedbackDialogComponent>;
     hotelPackageInfoTable: HotelPackage[] = [];
     hotelPackageInfoTableDataSource = new MatTableDataSource(this.hotelPackageInfoTable);
     public displayedColumns = ['Hotel', 'PackageName', 'RoomType', 'StartDate', 'EndDate', 'AvailabilityCount', 'Amount',
-        'CreatedBy', 'CreatedDate', 'LastModifiedBy', 'LastModifiedDate', 'Status', 'Action'];
+        'CreatedBy', 'CreatedDate', 'LastModifiedBy', 'LastModifiedDate', 'Status', 'Action','ViewFeedback'];
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     hotelList: Hotel[];
@@ -43,7 +44,6 @@ export class StayHistoryComponent implements OnInit {
     }
 
     ngOnInit() {
-
         this.hotelPackageInfoTableDataSource.paginator = this.paginator;
         this.hotelPackageInfoTableDataSource.sort = this.sort;
         if (this.hotelPackageVo == null) {
@@ -95,6 +95,19 @@ export class StayHistoryComponent implements OnInit {
             });
     }
 
+    openFeedbackDialog(packageId: any) {
+        this.dialogFeedbackRef = this.dialog.open(HotelPackageViewFeedbackDialogComponent, {
+            disableClose: false,
+            width: 'inherit',
+            data: {packageId: packageId,},
+            height: '60%'
+        });
+        this.dialogFeedbackRef.afterClosed().pipe(take(1))
+            .subscribe((hotel: HotelPackage[]) => {
+                this.searchHotelPackage();
+            });
+    }
+
     public searchHotelPackage(): void {
         this.hotelPackageVo.organizationId = Number(window.sessionStorage.getItem('organizationId'));
         this.packageService.hotelPackageSearch(this.hotelPackageVo).pipe(take(1))
@@ -106,7 +119,7 @@ export class StayHistoryComponent implements OnInit {
 }
 
 @Component({
-    selector: 'app-hotel-search-modal',
+    selector: 'app-stay-package-search-modal',
     template: '<app-stay-package-creation [hotelPackage]="data.hotelPackage" [isUpdate]="true" [isNew]="false" [actionType]="data.actionType" (onDelete)="closeModal($event)" (onCancel)="closeModal($event)"></app-stay-package-creation>'
 })
 export class HotelPackageDialogComponent {
@@ -115,6 +128,20 @@ export class HotelPackageDialogComponent {
 
     closeModal(hotelPackageId: any) {
         this.dialogRef.close(hotelPackageId);
+    }
+
+}
+
+@Component({
+    selector: 'app-stay-package-view-feedback-modal',
+    template: '<app-feedback-view [packageId]="data.packageId" (onCancel)="closeModal($event)"></app-feedback-view>'
+})
+export class HotelPackageViewFeedbackDialogComponent {
+    constructor(public dialogRef: MatDialogRef<HotelPackageViewFeedbackDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    }
+
+    closeModal(feedbackId: any) {
+        this.dialogRef.close(feedbackId);
     }
 
 }

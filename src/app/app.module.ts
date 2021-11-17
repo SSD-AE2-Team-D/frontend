@@ -108,10 +108,21 @@ import {PackageFeedbackDialogComponent, StayComponent} from "./operationalInfo/p
 import { ActivityDisplayComponent } from "./operationalInfo/package/creation/stay/activityDisplay/activity-display.component";
 import {
     HotelPackageDialogComponent,
+    HotelPackageViewFeedbackDialogComponent,
     StayHistoryComponent
 } from "./operationalInfo/package/search/stayHistory/stay-history.component";
 import {PackageSearchComponent} from "./operationalInfo/package/search/package-search.component";
 import {StayFeedbackComponent} from "./operationalInfo/package/feedback/stayFeedback/stay-feedback.component";
+import { BookingComponent } from "./operationalAction/booking/booking.component";
+import { BookingCreationComponent } from "./operationalAction/booking/creation/booking-creation.component";
+import { BookingService } from "./service/data/booking.service";
+import {StayBookingCreationComponent} from "./operationalAction/booking/hotelBooking/stayBookingCreation/stay-booking-creation.component";
+import {BookingSearchComponent} from "./operationalAction/booking/search/booking-search.component";
+import {
+    HotelBookingDialogComponent,
+    StayBookingSearchComponent
+} from "./operationalAction/booking/hotelBooking/stayBookingSearch/stay-booking-search.component";
+import { ViewFeedbackComponent } from "./operationalInfo/package/feedback/dispalyFeedback/view-feedback.component";
 
 @NgModule({
     declarations: [
@@ -129,6 +140,7 @@ import {StayFeedbackComponent} from "./operationalInfo/package/feedback/stayFeed
         CustomerComponent,
         HotelComponent,
         PackageComponent,
+        BookingComponent,
         ModuleCreationComponent,
         ModuleSearchComponent,
         OrganizationCreationComponent,
@@ -153,6 +165,11 @@ import {StayFeedbackComponent} from "./operationalInfo/package/feedback/stayFeed
         StayComponent,
         StayHistoryComponent,
         StayFeedbackComponent,
+        ViewFeedbackComponent,
+        BookingCreationComponent,
+        BookingSearchComponent,
+        StayBookingCreationComponent,
+        StayBookingSearchComponent,
         AuditComponent,
         AddressBookComponent,
         ConfirmDialogComponent,
@@ -167,6 +184,8 @@ import {StayFeedbackComponent} from "./operationalInfo/package/feedback/stayFeed
         HotelDialogComponent,
         PackageFeedbackDialogComponent,
         HotelPackageDialogComponent,
+        HotelBookingDialogComponent,
+        HotelPackageViewFeedbackDialogComponent,
         AuthorityDisplayComponent,
         PageDisplayComponent,
         RoleDisplayComponent,
@@ -186,7 +205,9 @@ import {StayFeedbackComponent} from "./operationalInfo/package/feedback/stayFeed
         CustomerDialogComponent,
         HotelDialogComponent,
         HotelPackageDialogComponent,
-        PackageFeedbackDialogComponent
+        PackageFeedbackDialogComponent,
+        HotelBookingDialogComponent,
+        HotelPackageViewFeedbackDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -253,6 +274,7 @@ import {StayFeedbackComponent} from "./operationalInfo/package/feedback/stayFeed
         LocationService,
         HotelService,
         PackageService,
+        BookingService,
         PageTitleService,
         RolePermission],
     exports: [FlexLayoutModule,],
