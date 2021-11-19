@@ -48,8 +48,13 @@
                         </mat-form-field>
                     </div>
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-                        <page-display [pageList]="pageList" [actionType]="actionType"
-                                      [roleId]="role.roleId"></page-display>
+                        <div class="mat-card-devHdr" style="font-size: medium; font-weight: bold">Page</div>
+                        <mat-card-content>
+                            <mat-card fxFlex="75%">
+                                <page-display [pageList]="pageList" [actionType]="actionType"
+                                              [roleId]="role.roleId"></page-display>
+                            </mat-card>
+                        </mat-card-content>
                     </div>
                 </div>
             </mat-card-content>

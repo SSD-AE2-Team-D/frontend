@@ -7,7 +7,6 @@ import {Page} from "../../config/page/page";
 import {PageVo} from "../../config/page/page-vo";
 import {MasterStatus} from "../../util/master-status";
 import {Authority} from "../../config/authority/authority";
-import {Module} from "../../config/module/module";
 
 @Injectable({
     providedIn: 'root'
@@ -54,9 +53,10 @@ export class PageService {
             )
     }
 
-    getPagesByModule(moduleId: number): Observable<Page[]> {
+    getPagesByModule(moduleId: number, userId: number): Observable<Page[]> {
         let params = new HttpParams();
         params = params.set('moduleId', moduleId.toString());
+        params = params.set('userId', userId.toString());
         return this.http.get(HttpService.SERVICE_PATH + 'pages/getPagesByModule', {
             params: params
         }).pipe(map(response => <Page[]>response));

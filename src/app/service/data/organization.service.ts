@@ -60,7 +60,6 @@ export class OrganizationService {
         }).pipe(map(response => <MasterStatus[]>response));
     }
 
-
     processError(err: any) {
         let message = '';
         if (err.error instanceof ErrorEvent) {

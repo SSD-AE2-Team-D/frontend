@@ -4,7 +4,9 @@
     <span *ngFor="let module of moduleList">
                <a mat-button (click)="getPages(module.moduleId)">{{module.moduleName}}</a>
              </span>
-    <a mat-button (click)="logOut()">Logout</a>
+    <button mat-button (click)="logOut()" matTooltip="Logout">
+        <mat-icon>logout</mat-icon>
+    </button>
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" [opened]="isShowing" class="mat-elevation-z8">

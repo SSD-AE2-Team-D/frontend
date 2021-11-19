@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthRequest} from "../../login/auth-request";
 import {HttpService} from "../../core/utill/http.service";
 import {Observable, throwError} from "rxjs";
-import {catchError, map, retry} from "rxjs/operators";
+import {catchError, retry} from "rxjs/operators";
 
 let HTTPOptions: Object = {
     headers: new HttpHeaders({

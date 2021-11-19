@@ -40,7 +40,6 @@ export class PageCreationComponent implements OnInit {
                 private moduleService: ModuleService,
                 private authorityService: AuthorityService,
                 public rolePermission: RolePermission) {
-
     }
 
     ngOnInit() {
@@ -75,6 +74,7 @@ export class PageCreationComponent implements OnInit {
     public resetForm() {
         this.pageForm.resetForm();
         this.authorityDisplayComponent.isUnassigned();
+        this.isDisabled = false;
     }
 
     public createPage(): void {

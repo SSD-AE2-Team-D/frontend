@@ -20,7 +20,6 @@ import {AddressBook} from "../../../shared/entity/address-book";
     encapsulation: ViewEncapsulation.None
 })
 export class OrganizationCreationComponent implements OnInit {
-
     @Input() organization: Organization;
     @Input() isUpdate: Boolean;
     @Input() isNew: Boolean;
@@ -72,6 +71,23 @@ export class OrganizationCreationComponent implements OnInit {
     }
 
    public createOrganization(): void {
+
+       if (this.organization.addressBook.countryId === undefined || this.organization.addressBook.countryId === null) {
+           this.snackBar.open('Country cannot empty', 'Error', <MatSnackBarConfig>{
+               duration: 6000,
+               panelClass: ['red-snackbar']
+           });
+           return;
+       }
+
+       if (this.organization.addressBook.locationId === undefined || this.organization.addressBook.locationId === null) {
+           this.snackBar.open('Location cannot empty', 'Error', <MatSnackBarConfig>{
+               duration: 6000,
+               panelClass: ['red-snackbar']
+           });
+           return;
+       }
+
         this.organizationService.postOrganization(this.organization).pipe(take(1)).subscribe((organization) => {
             this.organization = organization;
             this.snackBar.open('Organization Saved', 'success', <MatSnackBarConfig>{
@@ -87,6 +103,21 @@ export class OrganizationCreationComponent implements OnInit {
     }
 
     public updateOrganization(): void {
+        if (this.organization.addressBook.countryId === undefined || this.organization.addressBook.countryId === null) {
+            this.snackBar.open('Country cannot empty', 'Error', <MatSnackBarConfig>{
+                duration: 6000,
+                panelClass: ['red-snackbar']
+            });
+            return;
+        }
+
+        if (this.organization.addressBook.locationId === undefined || this.organization.addressBook.locationId === null) {
+            this.snackBar.open('Location cannot empty', 'Error', <MatSnackBarConfig>{
+                duration: 6000,
+                panelClass: ['red-snackbar']
+            });
+            return;
+        }
         this.organizationService.putOrganization(this.organization).subscribe(organization => {
             this.organization = organization;
             this.snackBar.open('Organization updated', 'success', <MatSnackBarConfig>{

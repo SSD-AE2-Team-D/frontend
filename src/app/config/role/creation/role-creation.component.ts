@@ -67,6 +67,7 @@ export class RoleCreationComponent implements OnInit {
     public resetForm() {
         this.roleForm.resetForm();
         this.pageDisplayComponent.isUnassigned();
+        this.isDisabled = false;
     }
 
     public createRole(): void {

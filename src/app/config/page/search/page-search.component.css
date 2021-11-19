@@ -44,3 +44,12 @@ div.mat-form-field-flex {
     background-color: #009999;
     color: #ffffff;
 }
+
+.red-snackbar{
+    background-color:brown;
+    color:white;
+}
+
+.mat-text-warn{
+    color: #ec1313;
+}

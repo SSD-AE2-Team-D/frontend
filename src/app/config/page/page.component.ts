@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {PageTitleService} from "../../core/page-title/page-title.service";
 import {MatTabChangeEvent} from "@angular/material/tabs";
+import {PageTitleService} from "../../core/page-title/page-title.service";
 
 @Component({
     selector: 'app-page',
@@ -8,9 +8,10 @@ import {MatTabChangeEvent} from "@angular/material/tabs";
 })
 export class PageComponent implements OnInit{
 
-    constructor(private pageTitleService: PageTitleService) { }
+    constructor(private pageTitleService: PageTitleService ) { }
 
     ngOnInit() {
+        this.pageTitleService.setTitle('Page')
     }
     onTabChange(event: MatTabChangeEvent) {
     }

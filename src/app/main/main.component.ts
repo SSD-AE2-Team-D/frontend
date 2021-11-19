@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Module} from "../config/module/module";
 import {Page} from "../config/page/page";
 import {ModuleService} from "../service/data/module.service";
@@ -64,7 +64,7 @@ export class MainComponent implements OnInit {
 
     public getPages(moduleId: number) {
         this.pageList = [];
-        this.pageService.getPagesByModule(moduleId).pipe(take(1))
+        this.pageService.getPagesByModule(moduleId, Number(window.sessionStorage.getItem('userId'))).pipe(take(1))
             .subscribe(pages => {
                 if (pages && pages.length > 0) {
                     pages.forEach(page => {

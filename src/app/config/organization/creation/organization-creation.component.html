@@ -84,6 +84,13 @@
                                 </small>
                             </div>
                         </mat-form-field>
+                        <p style="font-size:medium; font-weight: bold; color: #2eb82e">
+                            Selected modules:
+                            <span *ngFor="let mod of organization.modules; let f = first; let l = last;">
+                                <span style="color: blue">{{mod.moduleName}}</span>
+                                <span *ngIf="!(f && l) && !l">,</span>
+                            </span>
+                        </p>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -111,6 +118,7 @@
         </mat-card>
     </div>
     <mat-card>
+        <div class="mat-card-devHdr" style="font-size: medium; font-weight: bold">Reference Data</div>
         <mat-card-content>
             <app-address-book #addressBookComponent [addressBook]="organization.addressBook"></app-address-book>
         </mat-card-content>

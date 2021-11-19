@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
                 this.saveDataLocalStorage(data, this.authRequest);
             }, error => {
                 this.invalidLogin = true;
-                this.errorMsg = 'Token expired !!!';
+                this.errorMsg = 'Invalid Credentials';
                 return;
             });
     }
