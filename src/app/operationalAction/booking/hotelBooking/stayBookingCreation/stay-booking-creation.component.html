@@ -176,7 +176,7 @@
                     <span style="font-size: xx-large; font-weight: bold; color: #2eb82e">Total : &nbsp;<span style="font-size: x-large; font-weight: bold; color:#7e0c00">{{total | number}}</span></span>
                 </div>
             </mat-card-content>
-            <div *ngIf="isUpdate && hotelBooking.status !==0" style="float: right">
+            <div *ngIf="isUpdate && hotelBooking.status !==0 && hotelBooking.bookingStatus ===1" style="float: right">
                 <button mat-raised-button color="accent"
                         matTooltip="Confirm" type="button" (click)="bookingConfirm()">
                     <mat-icon>check</mat-icon>
