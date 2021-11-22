@@ -1,3 +1,6 @@
+# Video Implementation on how to set up
+link - <https://drive.google.com/drive/folders/1gVJcZupKBHzTf-rXyzc4slae99lprO2t?usp=sharing>
+
 # Todo
 
 Run `git clone <url>` and cd into the folder.
